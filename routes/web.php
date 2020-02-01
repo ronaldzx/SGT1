@@ -21,9 +21,9 @@ Route::get('/','PageController@inicio');
 //     return view('sgt_menu',compact('opciones'));
 // })->name('/');
 
-Route::get('ticket', function () {
-    return view('sgt_ticket');
-})->name('ticket');
+Route::get('ticket','PageController@ticket')->name('ticket');
+
+Route::get('socio','PageController@socio')->name('socio');
 
 Route::get('tesoreria', function () {
     return view('sgt_tesoreria');

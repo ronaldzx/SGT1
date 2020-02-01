@@ -174,6 +174,19 @@
                             </a>
                         </li>
                         <li class="nav-item nav-item-submenu">
+                            <a href="#" class="nav-link"><i class="icon-file-text3"></i> <span>Administración</span></a>
+
+                            <ul class="nav nav-group-sub" data-submenu-title="Themes">
+                                <li class="nav-item"><a href="{{ route('socio')}}" class="nav-link">Registro de
+                                        Socio</a></li>
+                                <li class="nav-item"><a href="../../../LTR/default/full/form_ticket.html"
+                                        class="nav-link">Aquí otra opción </a></li>
+                                <li class="nav-item"><a
+                                        href="../../../LTR/default/full/form_ticket.html../../../LTR/material/full/index.html"
+                                        class="nav-link">Aquí otra opción</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-file-text3"></i> <span>Tickets</span></a>
 
                             <ul class="nav nav-group-sub" data-submenu-title="Themes">
@@ -285,8 +298,7 @@
         </div>
         @endif
 
-    </div> -->
-    <script src="../resources/js/global_assets/js/planilla/ticket.js"></script>
+    </div> -->    
 </body>
 
 </html>

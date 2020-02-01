@@ -176,4 +176,5 @@
                         </div>
                     </div>
                 </div>
+                <script src="../resources/js/global_assets/js/planilla/ticket.js"></script>
                 @endsection
