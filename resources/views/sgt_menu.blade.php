@@ -180,7 +180,7 @@
                                 <li class="nav-item"><a href="{{ route('ticket')}}" class="nav-link">Registro de
                                         Tickets</a></li>
                                 <li class="nav-item"><a href="../../../LTR/default/full/form_ticket.html"
-                                        class="nav-link">Aquí otra opción</a></li>
+                                        class="nav-link">Aquí otra opción </a></li>
                                 <li class="nav-item"><a
                                         href="../../../LTR/default/full/form_ticket.html../../../LTR/material/full/index.html"
                                         class="nav-link">Aquí otra opción</a></li>
