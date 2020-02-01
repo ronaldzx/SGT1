@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('sgt_menu');
+});
+
+Route::get('/ticket', function () {
+    return view('funcionalidades/sgt_menu');
 });
