@@ -11,10 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('sgt_menu');
-});
+// use Illuminate\Routing\Route;
 
-Route::get('/ticket', function () {
-    return view('funcionalidades/sgt_menu');
-});
+Route::get('/','PageController@inicio');
+
+// Route::get('/', function () {
+//     $opciones = ['ticket','tesoreria'];
+    
+//     return view('sgt_menu',compact('opciones'));
+// })->name('/');
+
+Route::get('ticket', function () {
+    return view('sgt_ticket');
+})->name('ticket');
+
+Route::get('tesoreria', function () {
+    return view('sgt_tesoreria');
+})->name('tesoreria');

@@ -13,7 +13,8 @@
     <!-- Styles -->
     <!-- Global stylesheets -->
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+        type="text/css">
     <link href="../resources/js/global_assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
     <link href="../resources/js/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../resources/js/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
@@ -87,14 +88,16 @@
                         <div class="dropdown-content-body dropdown-scrollable">
                         </div>
                         <div class="dropdown-content-footer justify-content-center p-0">
-                            <a href="#" class="bg-light text-grey w-100 py-2" data-popup="tooltip" title="Load more"><i class="icon-menu7 d-block top-0"></i></a>
+                            <a href="#" class="bg-light text-grey w-100 py-2" data-popup="tooltip" title="Load more"><i
+                                    class="icon-menu7 d-block top-0"></i></a>
                         </div>
                     </div>
                 </li>
 
                 <li class="nav-item dropdown dropdown-user">
                     <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-                        <img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle" alt="">
+                        <img src="../../../../global_assets/images/placeholders/placeholder.jpg" class="rounded-circle"
+                            alt="">
                         <span>Eduardo</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -134,7 +137,8 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="mr-3">
-                                <a href="#"><img src="../../../../global_assets/images/placeholders/placeholder.jpg" width="38" height="38" class="rounded-circle" alt=""></a>
+                                <a href="#"><img src="../../../../global_assets/images/placeholders/placeholder.jpg"
+                                        width="38" height="38" class="rounded-circle" alt=""></a>
                             </div>
 
                             <div class="media-body">
@@ -157,7 +161,8 @@
                     <ul class="nav nav-sidebar" data-nav-type="accordion">
                         <!-- Main -->
                         <li class="nav-item-header">
-                            <div class="text-uppercase font-size-xs line-height-xs">Menú</div> <i class="icon-menu" title="Main"></i>
+                            <div class="text-uppercase font-size-xs line-height-xs">Menú</div> <i class="icon-menu"
+                                title="Main"></i>
                         </li>
                         <li class="nav-item">
                             <a href="index.html" class="nav-link">
@@ -172,18 +177,25 @@
                             <a href="#" class="nav-link"><i class="icon-file-text3"></i> <span>Tickets</span></a>
 
                             <ul class="nav nav-group-sub" data-submenu-title="Themes">
-                                <li class="nav-item"><a href="../../../LTR/default/full/form_ticket.html" class="nav-link">Registro de Tickets</a></li>
-                                <li class="nav-item"><a href="../../../LTR/default/full/form_ticket.html" class="nav-link">Aquí otra opción</a></li>
-                                <li class="nav-item"><a href="../../../LTR/default/full/form_ticket.html../../../LTR/material/full/index.html" class="nav-link">Aquí otra opción</a></li>
+                                <li class="nav-item"><a href="{{ route('ticket')}}" class="nav-link">Registro de
+                                        Tickets</a></li>
+                                <li class="nav-item"><a href="../../../LTR/default/full/form_ticket.html"
+                                        class="nav-link">Aquí otra opción</a></li>
+                                <li class="nav-item"><a
+                                        href="../../../LTR/default/full/form_ticket.html../../../LTR/material/full/index.html"
+                                        class="nav-link">Aquí otra opción</a></li>
                             </ul>
                         </li>
                         <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-coins"></i> <span>Tesorería</span></a>
 
                             <ul class="nav nav-group-sub" data-submenu-title="Themes">
-                                <li class="nav-item"><a href="../../../LTR/default/full/form_tesoreria.html" class="nav-link">Validación de Tickets</a></li>
-                                <li class="nav-item"><a href="../../../LTR/default/full/form_tesoreria.html" class="nav-link">Aquí otra opción</a></li>
-                                <li class="nav-item"><a href="../../../LTR/default/full/form_tesoreria.html" class="nav-link">Aquí otra opción</a></li>
+                                <li class="nav-item"><a href="{{ route('tesoreria')}}" class="nav-link">Validación de
+                                        Tickets</a></li>
+                                <li class="nav-item"><a href="../../../LTR/default/full/form_tesoreria.html"
+                                        class="nav-link">Aquí otra opción</a></li>
+                                <li class="nav-item"><a href="../../../LTR/default/full/form_tesoreria.html"
+                                        class="nav-link">Aquí otra opción</a></li>
                             </ul>
                         </li>
                         <li class="nav-item nav-item-submenu">
@@ -191,8 +203,10 @@
 
                             <ul class="nav nav-group-sub" data-submenu-title="Themes">
                                 <li class="nav-item"><a href="index.html" class="nav-link">Cuentas</a></li>
-                                <li class="nav-item"><a href="../../../LTR/material/full/index.html" class="nav-link">Aquí otra opción</a></li>
-                                <li class="nav-item"><a href="../../../LTR/material/full/index.html" class="nav-link">Aquí otra opción</a></li>
+                                <li class="nav-item"><a href="../../../LTR/material/full/index.html"
+                                        class="nav-link">Aquí otra opción</a></li>
+                                <li class="nav-item"><a href="../../../LTR/material/full/index.html"
+                                        class="nav-link">Aquí otra opción</a></li>
                             </ul>
                         </li>
                         <!-- /main -->
@@ -231,11 +245,13 @@
             <!-- Content area -->
             <div class="content">
                 <!-- nuestro contenido -->
+                @yield('seccion');
             </div>
             <!-- Footer -->
             <div class="navbar navbar-expand-lg navbar-light">
                 <div class="text-center d-lg-none w-100">
-                    <button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
+                    <button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse"
+                        data-target="#navbar-footer">
                         <i class="icon-unfold mr-2"></i>
                         Footer
                     </button>
@@ -270,6 +286,7 @@
         @endif
 
     </div> -->
+    <script src="../resources/js/global_assets/js/planilla/ticket.js"></script>
 </body>
 
 </html>
