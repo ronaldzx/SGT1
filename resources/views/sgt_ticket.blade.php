@@ -1,4 +1,11 @@
 @extends('sgt_menu')
+@section('sub-cabecera')
+<a class="breadcrumb-item">Tickets</a>
+<span class="breadcrumb-item active">Registro de tickets</span>
+@endsection
+@section('cabecera')
+<h4><span class="font-weight-semibold">Tickets</span> - Registro de tickets</h4>
+@endsection
 @section('seccion')
 <div class="card">
     <div class="card-header header-elements-inline">

@@ -180,8 +180,7 @@
                             <ul class="nav nav-group-sub" data-submenu-title="Themes">
                                 @foreach ($opcion as $hijo)
                                 @if ($hijo->padre_id == $item->id)
-
-                                <li class="nav-item"><a href="{{route($hijo->route)}}"
+                            <li class="nav-item"><a href="{{route($hijo->route)}}"
                                         class="nav-link">{{$hijo->descripcion}}</a></li>
 
                                 @endif
@@ -190,44 +189,6 @@
                         </li>
                         @endif
                         @endforeach
-                        {{-- <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-file-text3"></i> <span>Tickets</span></a>
-
-                            <ul class="nav nav-group-sub" data-submenu-title="Themes">
-                                <li class="nav-item"><a href="{{ route('ticket')}}" class="nav-link">Registro de
-                                        Tickets</a></li>
-                                <li class="nav-item"><a href="../../../LTR/default/full/form_ticket.html"
-                                        class="nav-link">Aquí otra opción </a></li>
-                                <li class="nav-item"><a
-                                        href="../../../LTR/default/full/form_ticket.html../../../LTR/material/full/index.html"
-                                        class="nav-link">Aquí otra opción</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-coins"></i> <span>Tesorería</span></a>
-
-                            <ul class="nav nav-group-sub" data-submenu-title="Themes">
-                                <li class="nav-item"><a href="{{ route('tesoreria')}}" class="nav-link">Validación de
-                                        Tickets</a></li>
-                                <li class="nav-item"><a href="../../../LTR/default/full/form_tesoreria.html"
-                                        class="nav-link">Aquí otra opción</a></li>
-                                <li class="nav-item"><a href="../../../LTR/default/full/form_tesoreria.html"
-                                        class="nav-link">Aquí otra opción</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-stats-growth"></i> <span>Contabilidad</span></a>
-
-                            <ul class="nav nav-group-sub" data-submenu-title="Themes">
-                                <li class="nav-item"><a href="index.html" class="nav-link">Cuentas</a></li>
-                                <li class="nav-item"><a href="../../../LTR/material/full/index.html"
-                                        class="nav-link">Aquí
-                                        otra opción</a></li>
-                                <li class="nav-item"><a href="../../../LTR/material/full/index.html"
-                                        class="nav-link">Aquí
-                                        otra opción</a></li>
-                            </ul>
-                        </li> --}}
                         <!-- /main -->
 
                     </ul>
@@ -245,17 +206,18 @@
             <div class="page-header page-header-light">
                 <div class="page-header-content header-elements-md-inline">
                     <div class="page-title d-flex">
-                        <h4><span class="font-weight-semibold">Tickets</span> - Registro de tickets</h4>
-
+                        @yield('cabecera')
+                        {{-- <h4><span class="font-weight-semibold">Tickets</span> - Registro de tickets</h4> --}}
                     </div>
                 </div>
 
                 <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
                     <div class="d-flex">
                         <div class="breadcrumb">
-                            <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
-                            <a href="form_inputs.html" class="breadcrumb-item">Tickets</a>
-                            <span class="breadcrumb-item active">Registro de tickets</span>
+                        <a href="{{route('/')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Inicio</a>
+                            @yield('sub-cabecera')
+                            {{-- <a href="form_inputs.html" class="breadcrumb-item">Tickets</a>
+                            <span class="breadcrumb-item active">Registro de tickets</span> --}}
                         </div>
                     </div>
                 </div>

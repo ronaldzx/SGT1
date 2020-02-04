@@ -1,4 +1,11 @@
 @extends('sgt_menu')
+@section('sub-cabecera')
+<a class="breadcrumb-item">Tesoreria</a>
+<span class="breadcrumb-item active">Validación de tickets</span>
+@endsection
+@section('cabecera')
+<h4><span class="font-weight-semibold">Tesoreria</span> - Validación de tickets</h4>
+@endsection
 @section('seccion')
 <div class="card">
     <div class="card-header header-elements-inline">
@@ -12,7 +19,7 @@
         <div class="col-sm-3">
             <div class="input-group">
                 <span class="input-group-prepend">
-                        <span class="input-group-text"><i class="icon-calendar22"></i></span>
+                    <span class="input-group-text"><i class="icon-calendar22"></i></span>
                 </span>
                 <input type="text" class="form-control daterange-single" value="01/01/2020">
             </div>
@@ -43,9 +50,12 @@
                     <td>08:10:26</td>
                     <td><span class="badge badge-success">En ruta</span></td>
                     <td class="text-center">
-                        <a title="Editar" onclick="nuevoTicket(1)"><i style="color:#EEA40F;"  class="icon-pencil5"></i></a>
-                        <a title="Eliminar" onclick="eliminarTicket()"><i style="color:#EE2D0F;"  class="icon-trash"></i></a>
-                        <a title="Confirmar" onclick="confirmarTicket()"><i style="color:#32B01C;" class="icon-checkmark4"></i></a>
+                        <a title="Editar" onclick="nuevoTicket(1)"><i style="color:#EEA40F;"
+                                class="icon-pencil5"></i></a>
+                        <a title="Eliminar" onclick="eliminarTicket()"><i style="color:#EE2D0F;"
+                                class="icon-trash"></i></a>
+                        <a title="Confirmar" onclick="confirmarTicket()"><i style="color:#32B01C;"
+                                class="icon-checkmark4"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -72,7 +82,8 @@
                     <td>08:30:26</td>
                     <td><span class="badge badge-secondary">Cerrado</span></td>
                     <td class="text-center">
-                        <a title="Exportar PDF" onclick="ExportarPDF()"><i style="color:#EE2D0F;" class="icon-file-pdf"></i></a>
+                        <a title="Exportar PDF" onclick="ExportarPDF()"><i style="color:#EE2D0F;"
+                                class="icon-file-pdf"></i></a>
                         <a href="#" onclick="Visualizar()"><i style="color:#0FCCEE;" class="icon-eye8"></i></a>
                     </td>
                 </tr>
@@ -85,9 +96,10 @@
                     <td>08:40:26</td>
                     <td><span class="badge badge-success">En ruta</span></td>
                     <td class="text-center">
-                        <a href="#" onclick="nuevoTicket(4)"><i style="color:#EEA40F;"  class="icon-pencil5"></i></a>
-                        <a href="#" onclick="eliminarTicket()"><i style="color:#EE2D0F;"  class="icon-trash"></i></a>
-                        <a href="#" onclick="confirmarTicket()"><i style="color:#32B01C;" class="icon-checkmark4"></i></a>
+                        <a href="#" onclick="nuevoTicket(4)"><i style="color:#EEA40F;" class="icon-pencil5"></i></a>
+                        <a href="#" onclick="eliminarTicket()"><i style="color:#EE2D0F;" class="icon-trash"></i></a>
+                        <a href="#" onclick="confirmarTicket()"><i style="color:#32B01C;"
+                                class="icon-checkmark4"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -99,9 +111,10 @@
                     <td>08:50:26</td>
                     <td><span class="badge badge-success">En ruta</span></td>
                     <td class="text-center">
-                        <a href="#" onclick="nuevoTicket(5)"><i style="color:#EEA40F;"  class="icon-pencil5"></i></a>
-                        <a href="#" onclick="eliminarTicket()"><i style="color:#EE2D0F;"  class="icon-trash"></i></a>
-                        <a href="#" onclick="confirmarTicket()"><i style="color:#32B01C;" class="icon-checkmark4"></i></a>
+                        <a href="#" onclick="nuevoTicket(5)"><i style="color:#EEA40F;" class="icon-pencil5"></i></a>
+                        <a href="#" onclick="eliminarTicket()"><i style="color:#EE2D0F;" class="icon-trash"></i></a>
+                        <a href="#" onclick="confirmarTicket()"><i style="color:#32B01C;"
+                                class="icon-checkmark4"></i></a>
                     </td>
                 </tr>
                 <tr>
@@ -113,13 +126,15 @@
                     <td>09:00:11</td>
                     <td><span class="badge badge-secondary">Cerrado</span></td>
                     <td class="text-center">
-                        <a title="Exportar PDF" onclick="ExportarPDF()"><i style="color:#EE2D0F;" class="icon-file-pdf"></i></a>
-                        <a title="Visualizar" onclick="Visualizar()"><i style="color:#0FCCEE;" class="icon-eye8"></i></a>
+                        <a title="Exportar PDF" onclick="ExportarPDF()"><i style="color:#EE2D0F;"
+                                class="icon-file-pdf"></i></a>
+                        <a title="Visualizar" onclick="Visualizar()"><i style="color:#0FCCEE;"
+                                class="icon-eye8"></i></a>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    
+
 </div>
 @endsection
