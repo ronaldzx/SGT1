@@ -3,19 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App;
 
 class PageController extends Controller
 {
     //
-    public function inicio(){
-        return view('sgt_menu');
+    public function inicio()
+    {
+        $opcion = App\Opcion::opcionesActivas()->get();
+        return view('sgt_menu', compact('opcion'));
     }
 
-    public function ticket(){
-        return view('sgt_ticket');
+    public function ticket()
+    {
+        $opcion = App\Opcion::opcionesActivas()->get();
+        return view('sgt_ticket', compact('opcion'));
     }
 
-    public function socio(){
-        return view('sgt_administracion_socio');
+    public function socio()
+    {
+        $opcion = App\Opcion::opcionesActivas()->get();
+        return view('sgt_administracion_socio',compact('opcion'));
+    }
+    public function tesoreria()
+    {
+        $opcion = App\Opcion::opcionesActivas()->get();
+        return view('sgt_tesoreria',compact('opcion'));
     }
 }

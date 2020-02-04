@@ -165,28 +165,32 @@
                                 title="Main"></i>
                         </li>
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">
+                            <a href="{{route('/')}}" class="nav-link">
                                 <i class="icon-home4"></i>
                                 <span>
-                                    Inicio
-                                    <!-- <span class="d-block font-weight-normal opacity-50">No active orders</span> -->
+                                    Inicio                                    
                                 </span>
                             </a>
                         </li>
+                        @foreach ($opcion as $item)
+                        @if (empty($item->padre_id))
                         <li class="nav-item nav-item-submenu">
-                            <a href="#" class="nav-link"><i class="icon-file-text3"></i> <span>Administración</span></a>
-
+                            <a href="#" class="nav-link"><i class="{{$item->icono}}"></i>
+                                <span>{{$item->descripcion}}</span></a>
                             <ul class="nav nav-group-sub" data-submenu-title="Themes">
-                                <li class="nav-item"><a href="{{ route('socio')}}" class="nav-link">Registro de
-                                        Socio</a></li>
-                                <li class="nav-item"><a href="../../../LTR/default/full/form_ticket.html"
-                                        class="nav-link">Aquí otra opción </a></li>
-                                <li class="nav-item"><a
-                                        href="../../../LTR/default/full/form_ticket.html../../../LTR/material/full/index.html"
-                                        class="nav-link">Aquí otra opción</a></li>
+                                @foreach ($opcion as $hijo)
+                                @if ($hijo->padre_id == $item->id)
+
+                                <li class="nav-item"><a href="{{route($hijo->route)}}"
+                                        class="nav-link">{{$hijo->descripcion}}</a></li>
+
+                                @endif
+                                @endforeach
                             </ul>
                         </li>
-                        <li class="nav-item nav-item-submenu">
+                        @endif
+                        @endforeach
+                        {{-- <li class="nav-item nav-item-submenu">
                             <a href="#" class="nav-link"><i class="icon-file-text3"></i> <span>Tickets</span></a>
 
                             <ul class="nav nav-group-sub" data-submenu-title="Themes">
@@ -217,11 +221,13 @@
                             <ul class="nav nav-group-sub" data-submenu-title="Themes">
                                 <li class="nav-item"><a href="index.html" class="nav-link">Cuentas</a></li>
                                 <li class="nav-item"><a href="../../../LTR/material/full/index.html"
-                                        class="nav-link">Aquí otra opción</a></li>
+                                        class="nav-link">Aquí
+                                        otra opción</a></li>
                                 <li class="nav-item"><a href="../../../LTR/material/full/index.html"
-                                        class="nav-link">Aquí otra opción</a></li>
+                                        class="nav-link">Aquí
+                                        otra opción</a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <!-- /main -->
 
                     </ul>
@@ -281,24 +287,6 @@
     </div>
 
     <!-- Main content -->
-
-
-    <!-- <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-            <a href="{{ url('/home') }}">Home2s</a>
-            @else
-            <a href="{{ route('login') }}">Login</a>
-
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}">Register</a>
-            @endif
-            @endauth
-        </div>
-        @endif
-
-    </div> -->    
 </body>
 
 </html>
