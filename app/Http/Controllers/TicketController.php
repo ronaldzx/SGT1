@@ -8,9 +8,9 @@ use App;
 class TicketController extends Controller
 {
     //
-    public function obtener_ticket_activoXdia()
+    public function obtener_ticket_activo()
     {
-        $ticket = App\Ticket::TicketActivo();
+        $ticket = App\Ticket::TicketActivoXdia();
         return $ticket;
     }
 }

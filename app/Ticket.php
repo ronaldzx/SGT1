@@ -9,10 +9,9 @@ class Ticket extends Model
 {
     protected $table = 'ticket';
 
-
-    public function scopeTicketActivo($query)
+    public function scopeTicketActivo()
     {
-        $respuesta = DB::select("select 	t.id,
+        $respuesta = DB::select("SELECT t.id,
                                     t.codigo,
                                     t.numero_vuelta,
                                     t.fecha_salida, 
