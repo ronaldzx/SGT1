@@ -19,6 +19,7 @@ Route::get('admin_conductor','PageController@administracion_conductor')->name('a
 
 Route::get('obtener_ticket_activoXdia','TicketController@obtener_ticket_activoXdia')->name('obtener_ticket_activoXdia');
 
+Route::get('obtener_conductor_activo','ConductorController@obtener_conductor_activo')->name('obtener_conductor_activo');
 // Route::get('tesoreria', function () {
 //     return view('sgt_tesoreria');
 // })->name('tesoreria')

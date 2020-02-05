@@ -25,19 +25,18 @@
 
     </div>
     <div class="card-body">
-        <table class="table datatable-basic">
+        <table id="conductores" class="table datatable-basic">
             <thead>
                 <tr>
-                    <th class="text-center">id</th>
-                    <th class="text-center">Nombre</th>
-                    <th class="text-center">Apellido</th>
+                    <th class="text-center">Conductor</th>
                     <th class="text-center">DNI</th>
                     <th class="text-center">Edad</th>
+                    <th class="text-center">Telefono</th>
                     <th class="text-center">Estado</th>
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <!-- <tbody>
                 <tr>
                     <td>01</td>
                     <td>xxxx</td>
@@ -90,7 +89,7 @@
                         <a title="Confirmar" onclick="confirmarTicket()"><i style="color:#32B01C;" class="icon-checkmark4"></i></a>
                     </td>
                 </tr>
-            </tbody>
+            </tbody> -->
         </table>
     </div>
 
@@ -147,6 +146,82 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var editar = '';
+        var eliminar = '';
+        var penalidad = '';
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('obtener_conductor_activo') }}",
+
+            success: function(data) {
+                $('#conductores').dataTable({
+                    data: data,
+                    "order": [0, "asc"],
+                    "columns": [{
+                            "data": "conductor",
+                            "width": "80px",
+                            "sClass": "text-center"
+                        },
+                        {
+                            "data": "dni",
+                            "width": "80px",
+                            "sClass": "text-center"
+                        },
+                        {
+                            "data": "edad",
+                            "width": "120px",
+                            "sClass": "text-center"
+                        },
+                        {
+                            "data": "telefono",
+                            "width": "120px",
+                            "sClass": "text-center"
+                        },
+                        {
+                            "data": "tiene_penalidad",
+                            "width": "120px",
+                            "sClass": "text-center"
+                        },
+                        {
+                            "data": "id",
+                            "width": "120px",
+                            "sClass": "text-center"
+                        }
+                    ],
+                    "columnDefs": [{
+                            "render": (data, type, row) => {
+                                editar = '<a title="Editar" onclick="nuevoTicket(' + data + ')"><i style="color:#EEA40F;" class="icon-pencil5"></i></a>';
+                                eliminar = '<a title="Eliminar" onclick="eliminarTicket(' + data + ')"><i style="color:#EE2D0F;" class="icon-trash"></i></a>';
+                                return editar + ' ' + eliminar;
+                            },
+                            "targets": 5
+                        },
+                        {
+                            "render": (data, type, row) => {
+                                switch (data) {
+                                    case 1:
+                                        penalidad = '<span class="badge badge-danger">Penalidad</span>'
+                                        break;
+                                    case 0:
+                                        penalidad = '<span class="badge badge-success">Sin penalidad</span>'
+                                        break;
+                                }
+
+                                return penalidad;
+                            },
+                            "targets": 4
+                        }
+                    ],
+                    "destroy": true
+                });
+
+            }
+        });
+    });
+</script>
+
 <!-- /vertical form modal -->
 <script src="../resources/js/global_assets/js/planilla/administracion_conductor.js"></script>
 @endsection
