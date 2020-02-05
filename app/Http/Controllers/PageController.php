@@ -16,8 +16,9 @@ class PageController extends Controller
 
     public function ticket()
     {
+        $ticket = App\Ticket::TicketActivo();
         $opcion = App\Opcion::opcionesActivas()->get();
-        return view('sgt_ticket', compact('opcion'));
+        return view('sgt_ticket', compact('opcion','ticket'));
     }
 
     public function socio()

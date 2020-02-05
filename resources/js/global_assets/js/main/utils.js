@@ -1,3 +1,12 @@
+function ajaxGet(url,onResponse){
+    $.ajax({
+        type:'GET',
+        url:url,
+        success:function(data){
+            onResponse(data);
+        }
+    })
+}
 function loaderShow(element) {
     if (isEmpty(element))
         element = "#window";

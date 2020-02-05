@@ -1,8 +1,9 @@
 $(document).ready(function() {
-
+    
 });
 
 function nuevoTicket(id) {
+    console.log('{{$opcion}}');
     var btnNuevo = '';
     $('#ticketModal').modal('show');
     if (id) {
@@ -12,6 +13,7 @@ function nuevoTicket(id) {
         btnNuevo += '<div class="card-body" id="bodyPenalidades"></div>'
     }
     $('#cardPenalidades').html(btnNuevo);
+    $('#prueba').val('{{$opcion}}');
 }
 
 function agregarPenalidad() {
