@@ -7,10 +7,10 @@
 <h4><span class="font-weight-semibold">Tickets</span> - Registro de tickets</h4>
 @endsection
 @section('seccion')
-<div class="card">
+<div id="windowTicket" class="card">
     <div class="card-header header-elements-inline">
 
-        <div class="col-sm-6">
+        <div class="col-sm-9">
             <button type="button" onclick="nuevoTicket()" class="btn btn-primary">Nuevo ticket</button>
         </div>
         <div class="col-sm-3">
@@ -107,8 +107,8 @@
         $.ajax({
            type:'GET',
            url:"{{ route('obtener_ticket_activoXdia') }}",      
-           beforeSend: function () {
-                        $("#resultado").html("Procesando, espere por favor...");
+           beforeSend: function () {               
+               loaderWindow('windowTicket');                        
                 },     
            success:function(data){
                 $('#tickets').dataTable({
@@ -126,7 +126,8 @@
                     ],
                     "destroy": true
                 });
-                $("#resultado").html('');
+                loaderWindowClose('windowTicket');
+                // $("#resultado").html('');
             }   
         });
     });

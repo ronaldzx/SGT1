@@ -1,12 +1,69 @@
-function ajaxGet(url,onResponse){
+function ajaxGet(url, onResponse) {
     $.ajax({
-        type:'GET',
-        url:url,
-        success:function(data){
+        type: 'GET',
+        url: url,
+        success: function (data) {
             onResponse(data);
         }
     })
 }
+function loaderWindow(window) {
+    $('#' + window).block({
+        message: '<i class="icon-spinner4 spinner"></i>',
+        overlayCSS: {
+            backgroundColor: '#fff',
+            opacity: 0.8,
+            cursor: 'wait'
+        },
+        css: {
+            border: 0,
+            padding: 0,
+            backgroundColor: 'none'
+        }
+    })
+};
+function loaderWindowClose(window){
+    $('#'+window).unblock();
+}
+$('.btnLoader').on('click', function (window) {
+    var light_4 = $('#' + window);
+    $(light_4).block({
+        message: '<i class="icon-spinner4 spinner"></i>',
+        overlayCSS: {
+            backgroundColor: '#fff',
+            opacity: 0.8,
+            cursor: 'wait'
+        },
+        css: {
+            border: 0,
+            padding: 0,
+            backgroundColor: 'none'
+        }
+    });
+    window.setTimeout(function () {
+        $(light_4).unblock();
+    }, 2000);
+});
+$('.btnLoader').on('click', function (window) {
+    // var light_4 = $(this).closest('.card');
+    var light_4 = $('#' + window);
+    $(light_4).block({
+        message: '<i class="icon-spinner4 spinner"></i>',
+        overlayCSS: {
+            backgroundColor: '#fff',
+            opacity: 0.8,
+            cursor: 'wait'
+        },
+        css: {
+            border: 0,
+            padding: 0,
+            backgroundColor: 'none'
+        }
+    });
+    window.setTimeout(function () {
+        $(light_4).unblock();
+    }, 2000);
+});
 function loaderShow(element) {
     if (isEmpty(element))
         element = "#window";
@@ -89,10 +146,10 @@ function loaderClose() {
  */
 function jArgs() {
     this.str = '';
-    this.addArgs = function(key, value) {
+    this.addArgs = function (key, value) {
         this.str += (this.str.length) == 0 ? '"' + key + '":' + '"' + value + '"' : ',"' + key + '":' + '"' + value + '"';
     };
-    this.getjson = function() {
+    this.getjson = function () {
         this.str = '{' + this.str + '}';
         return this.str;
     };
@@ -105,11 +162,11 @@ function jArgs() {
 function md5(str) {
     var xl;
 
-    var rotateLeft = function(lValue, iShiftBits) {
+    var rotateLeft = function (lValue, iShiftBits) {
         return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
     };
 
-    var addUnsigned = function(lX, lY) {
+    var addUnsigned = function (lX, lY) {
         var lX4, lY4, lX8, lY8, lResult;
         lX8 = (lX & 0x80000000);
         lY8 = (lY & 0x80000000);
@@ -130,40 +187,40 @@ function md5(str) {
         }
     };
 
-    var _F = function(x, y, z) {
+    var _F = function (x, y, z) {
         return (x & y) | ((~x) & z);
     };
-    var _G = function(x, y, z) {
+    var _G = function (x, y, z) {
         return (x & z) | (y & (~z));
     };
-    var _H = function(x, y, z) {
+    var _H = function (x, y, z) {
         return (x ^ y ^ z);
     };
-    var _I = function(x, y, z) {
+    var _I = function (x, y, z) {
         return (y ^ (x | (~z)));
     };
 
-    var _FF = function(a, b, c, d, x, s, ac) {
+    var _FF = function (a, b, c, d, x, s, ac) {
         a = addUnsigned(a, addUnsigned(addUnsigned(_F(b, c, d), x), ac));
         return addUnsigned(rotateLeft(a, s), b);
     };
 
-    var _GG = function(a, b, c, d, x, s, ac) {
+    var _GG = function (a, b, c, d, x, s, ac) {
         a = addUnsigned(a, addUnsigned(addUnsigned(_G(b, c, d), x), ac));
         return addUnsigned(rotateLeft(a, s), b);
     };
 
-    var _HH = function(a, b, c, d, x, s, ac) {
+    var _HH = function (a, b, c, d, x, s, ac) {
         a = addUnsigned(a, addUnsigned(addUnsigned(_H(b, c, d), x), ac));
         return addUnsigned(rotateLeft(a, s), b);
     };
 
-    var _II = function(a, b, c, d, x, s, ac) {
+    var _II = function (a, b, c, d, x, s, ac) {
         a = addUnsigned(a, addUnsigned(addUnsigned(_I(b, c, d), x), ac));
         return addUnsigned(rotateLeft(a, s), b);
     };
 
-    var convertToWordArray = function(str) {
+    var convertToWordArray = function (str) {
         var lWordCount;
         var lMessageLength = str.length;
         var lNumberOfWords_temp1 = lMessageLength + 8;
@@ -186,7 +243,7 @@ function md5(str) {
         return lWordArray;
     };
 
-    var wordToHex = function(lValue) {
+    var wordToHex = function (lValue) {
         var wordToHexValue = "",
             wordToHexValue_temp = "",
             lByte, lCount;
@@ -435,7 +492,7 @@ function is_object(mixed_var) {
 }
 
 function is_int(input) {
-    return typeof(input) == 'number' && parseInt(input) == input;
+    return typeof (input) == 'number' && parseInt(input) == input;
 }
 
 function isEmpty(value) {
@@ -471,7 +528,7 @@ function isEmptyData(data) {
 }
 
 function isArray(value) {
-    if (typeof(value) == undefined)
+    if (typeof (value) == undefined)
         return false;
     if (value == null)
         return false;
@@ -513,8 +570,8 @@ function crearWindow(title, divMensaje, messagerDefault) {
         minimizable: false,
         maximizable: false,
         resizable: false,
-        onClose: function() {
-            setTimeout(function() {
+        onClose: function () {
+            setTimeout(function () {
                 win.window("destroy");
             }, 100);
         }
@@ -525,20 +582,20 @@ function crearWindow(title, divMensaje, messagerDefault) {
 };
 
 $.extend($.messager, {
-    cierreTicket: function(title, mensaje, paramsCombo, funcion) {
+    cierreTicket: function (title, mensaje, paramsCombo, funcion) {
         var divMensaje = "<div class=\"messager-icon messager-question\"></div>" + mensaje +
             "<br/>" + "<div style=\"clear:both;\"/>" + '\
             <div id="' + paramsCombo['contenedor'] + '" style="display:inline-block"></div>';
         var combo = null;
         var messagerDefault = {};
-        messagerDefault[$.messager.defaults.ok] = function() {
+        messagerDefault[$.messager.defaults.ok] = function () {
             win.window("close");
             if (funcion) {
                 funcion(combo.getItemSeleccionado());
                 return false;
             }
         };
-        messagerDefault[$.messager.defaults.cancel] = function() {
+        messagerDefault[$.messager.defaults.cancel] = function () {
             win.window("close");
             if (funcion) {
                 funcion();
@@ -547,7 +604,7 @@ $.extend($.messager, {
         };
         var win = crearWindow(title, divMensaje, messagerDefault);
         win.children("input.messager-input").focus();
-        setTimeout(function() {
+        setTimeout(function () {
             combo = new SbsComboBox(paramsCombo['contenedor'], paramsCombo['contenedor'] + '_cmb');
             combo.setValueField(paramsCombo['valuefield']);
             combo.setTextField(paramsCombo['textfield']);
@@ -680,14 +737,14 @@ function substractTimes(t1, t2) {
 }
 
 function calcT3() {
-    with(document.frm)
+    with (document.frm)
     t3.value = substractTimes(t1.value, t2.value);
 }
 
 function getValorByEtiqueta(etiquetas, etiqueta) {
     var valor = null;
     if (!isEmpty(etiquetas)) {
-        $.each(etiquetas, function(index, item) {
+        $.each(etiquetas, function (index, item) {
             if (item.etiqueta == etiqueta) {
                 valor = item.valor;
                 return false;
@@ -825,10 +882,10 @@ function htmlDecode(value) {
     return $('<div/>').html(value).text();
 }
 
-(function($) {
+(function ($) {
     var iframe = null;
     $.extend({
-        downloadFile: function(fileUrl) {
+        downloadFile: function (fileUrl) {
             if (iframe) {
                 iframe.attr('src', fileUrl);
             } else {
@@ -839,7 +896,7 @@ function htmlDecode(value) {
                     .appendTo("body");
             }
         },
-        downloadFileExcel: function(fileName, empresaId) {
+        downloadFileExcel: function (fileName, empresaId) {
             var fileUrl = URL_BASE + "download.php?file=" + fileName + "&empresa=" + empresaId + "&tipo=export";
             if (iframe) {
                 iframe.attr('src', fileUrl);
@@ -906,10 +963,10 @@ function breakFunction() {
 var componentes = {};
 var acciones = {};
 var isLoadFirst = false;
-componentes.onClickBorrar = function() {
+componentes.onClickBorrar = function () {
     $("#buscadorFormCriterios").form("clear");
 }
-componentes.iniciaBuscador = function() {
+componentes.iniciaBuscador = function () {
     var contenedor = $('body');
     //var busc = new GridSearch(toolbarId, btnSearch, "buscatareas");
     $('#buscadorButtonBuscarToolbar').tooltip({
@@ -917,24 +974,24 @@ componentes.iniciaBuscador = function() {
         showEvent: 'click',
         trackMouse: false,
         showDelay: 25,
-        onUpdate: function(content) {
+        onUpdate: function (content) {
             // convertimos nuestros divs a panels
             $('#buscadorContenedorPrincipal').panel();
             $('#buscadorContenedorCriterios').panel({ border: false });
             content.panel({ border: false });
         },
-        onHide: function() {
+        onHide: function () {
             contenedor.css('position', '');
             contenedor.children("div.content-disabled-grid-search").remove();
             isTooltipAbierto = false;
         },
-        onShow: function() {
+        onShow: function () {
             var t = $(this);
-            t.unbind().bind('click', function() {
+            t.unbind().bind('click', function () {
                 t.tooltip('show');
             });
 
-            t.tooltip('tip').unbind().bind('mouseenter', function() {
+            t.tooltip('tip').unbind().bind('mouseenter', function () {
                 t.tooltip('show');
             });
 
@@ -944,7 +1001,7 @@ componentes.iniciaBuscador = function() {
             isTooltipAbierto = true;
             var zIndex = t.tooltip('tip').css('z-index') - 1;
             var div = $('<div class="content-disabled-grid-search" style="display:block; z-index: ' + zIndex + '"></div>').appendTo(contenedor);
-            div.bind('click', function() {
+            div.bind('click', function () {
                 t.tooltip('hide');
             });
 
@@ -958,23 +1015,23 @@ componentes.iniciaBuscador = function() {
             // Asignamos las propiedades a los botones
             $('#buscadorButtonCerrar').linkbutton({ iconCls: 'icon-cancel', plain: false });
             var buttonCerrar = document.getElementById('buscadorButtonCerrar');
-            buttonCerrar.onclick = function() {
+            buttonCerrar.onclick = function () {
                 componentes.onClickCerrar(t);
             };
             $('#buscadorButtonBorrar').linkbutton({ iconCls: 'icon-clear', plain: false });
             var buttonCerrar = document.getElementById('buscadorButtonBorrar');
-            buttonCerrar.onclick = function() {
+            buttonCerrar.onclick = function () {
                 componentes.onClickBorrarFiltro(t);
             };
             $('#buscadorButtonBuscar').linkbutton({ iconCls: 'icon-filter', plain: false }); // Asignamos las propiedades del boton
             var buttonSearch = document.getElementById('buscadorButtonBuscar');
-            buttonSearch.onclick = function() {
+            buttonSearch.onclick = function () {
                 if (!$('#buscadorFormCriterios').form('validate'))
                     return;
                 componentes.onClickBuscar(t);
             };
         },
-        onPosition: function(left, top) {
+        onPosition: function (left, top) {
             var _1b3 = $.data(this, "tooltip");
             if (!_1b3 || !_1b3.tip)
                 return;
@@ -1002,7 +1059,7 @@ componentes.iniciaBuscador = function() {
             $(thisInstance).tooltip('arrow').css('display', 'none');
             // - Si el tooltip no entra en la parte inferior y si entra en la parte superior entonces posicionarlo arriba.
             if ((top + altoTooltip) > altoVentana && newTop > 0) { // Top
-                setTimeout(function() {
+                setTimeout(function () {
                     tip.removeClass('tooltip-bottom');
                     tip.addClass('tooltip-top');
                     $($(thisInstance).tooltip('arrow')[0]).css('border-top-color', 'rgb(149, 184, 231)');
@@ -1014,7 +1071,7 @@ componentes.iniciaBuscador = function() {
 
             } else { // Bottom
                 newTop = top;
-                setTimeout(function() {
+                setTimeout(function () {
                     tip.removeClass('tooltip-top');
                     tip.addClass('tooltip-bottom');
                     $($(thisInstance).tooltip('arrow')[0]).css('border-bottom-color', 'rgb(149, 184, 231)');
@@ -1034,7 +1091,7 @@ componentes.iniciaBuscador = function() {
     $('#buscadorButtonBuscarToolbar').tooltip('show');
     $('#buscadorButtonBuscarToolbar').tooltip('hide');
 }
-componentes.loadGridByName = function(name, response, showTag) {
+componentes.loadGridByName = function (name, response, showTag) {
     if (!isLoadFirst) {
         $("#" + name).datagrid({
             data: response.data
@@ -1046,7 +1103,7 @@ componentes.loadGridByName = function(name, response, showTag) {
             $("#buscadorButtonBuscarToolbarInfo").tooltip({
                 position: 'right',
                 content: '<span style="color:#fff">' + response[PARAM_TAG] + '</span>',
-                onShow: function() {
+                onShow: function () {
                     $(this).tooltip('tip').css({
                         backgroundColor: '#666',
                         borderColor: '#666'
@@ -1057,7 +1114,7 @@ componentes.loadGridByName = function(name, response, showTag) {
             $("#buscadorButtonBuscarToolbarInfo").tooltip({
                 position: 'right',
                 content: '<span style="color:#fff">Todo</span>',
-                onShow: function() {
+                onShow: function () {
                     $(this).tooltip('tip').css({
                         backgroundColor: '#666',
                         borderColor: '#666'
@@ -1069,10 +1126,10 @@ componentes.loadGridByName = function(name, response, showTag) {
         $("#" + name).datagrid('loadData', response.data);
     }
 }
-componentes.loadGrid = function(response, showTag) {
+componentes.loadGrid = function (response, showTag) {
     componentes.loadGridByName('dg', response, showTag);
 }
-componentes.loadCustomGrid = function(response, showTag, id) {
+componentes.loadCustomGrid = function (response, showTag, id) {
     if (!isLoadFirst) {
         $(id).datagrid({
             data: response.data
@@ -1084,17 +1141,17 @@ componentes.loadCustomGrid = function(response, showTag, id) {
     }
 }
 componentes.existeTooltip = 0;
-componentes.cerrarTooltipBusqueda = function() {
+componentes.cerrarTooltipBusqueda = function () {
     if (componentes.existeTooltip == 1)
         $("#buscadorButtonBuscarToolbarInfo").tooltip('hide');
 }
-componentes.estadoIcono = function(item) {
+componentes.estadoIcono = function (item) {
     if (item.estado == 1) {
         $('#linkEstado' + item.id).linkbutton({
             iconCls: "icon-inactivo",
             plain: true
         });
-        $('#linkEstado' + item.id).bind('click', function() {
+        $('#linkEstado' + item.id).bind('click', function () {
             acciones.inactivar(item.id);
         });
     } else {
@@ -1102,19 +1159,19 @@ componentes.estadoIcono = function(item) {
             iconCls: "icon-activo",
             plain: true
         });
-        $('#linkEstado' + item.id).bind('click', function() {
+        $('#linkEstado' + item.id).bind('click', function () {
             acciones.activar(item.id);
         });
     }
 }
-componentes.onClickCerrar = function(t) {
+componentes.onClickCerrar = function (t) {
     t.tooltip('hide');
 }
-componentes.onClickBorrarFiltro = function(t) {
+componentes.onClickBorrarFiltro = function (t) {
     componentes.onClickBorrar();
     componentes.onClickBuscar(t);
 }
-componentes.getTagMensaje = function(campo, valor, strMensaje) {
+componentes.getTagMensaje = function (campo, valor, strMensaje) {
     if (isEmpty(trim(valor)))
         return strMensaje;
     if (strMensaje !== "")
@@ -1122,12 +1179,12 @@ componentes.getTagMensaje = function(campo, valor, strMensaje) {
     strMensaje += campo + ": " + valor;
     return strMensaje;
 }
-componentes.onClickBuscar = function(t) {
+componentes.onClickBuscar = function (t) {
     if (!isEmpty(t))
         componentes.onClickCerrar(t);
     buscar();
 }
-acciones.eliminar = function(id, tag) {
+acciones.eliminar = function (id, tag) {
     ax.addParamTmp(PARAM_ACCION_NAME, "cambiarEstadoVisible");
     ax.addParamTmp(PARAM_TAG, tag);
     ax.addParamTmp("id", id);
@@ -1136,7 +1193,7 @@ acciones.eliminar = function(id, tag) {
     ax.consumir();
 }
 
-acciones.activar = function(id, tag) {
+acciones.activar = function (id, tag) {
     ax.addParamTmp(PARAM_ACCION_NAME, "cambiarEstadoVisible");
     ax.addParamTmp(PARAM_TAG, tag);
     ax.addParamTmp("id", id);
@@ -1144,78 +1201,78 @@ acciones.activar = function(id, tag) {
     ax.addParamTmp("bandera", 1);
     ax.consumir();
 }
-acciones.inactivar = function(id, tag) {
-        ax.addParamTmp(PARAM_ACCION_NAME, "cambiarEstadoVisible");
-        ax.addParamTmp(PARAM_TAG, tag);
-        ax.addParamTmp("id", id);
-        ax.addParamTmp("campo", "estado");
-        ax.addParamTmp("bandera", 0);
-        ax.consumir();
-    }
-    //acciones.iniciaAjax = function(componenteId){
-    //    ax.addParam(PARAM_COMPONENTE_ID, componenteId);
-    //    ax.addEventListener("onSuccess", onResponseAjaxp);
-    //    ax.addEventListener("onError", acciones.onErrorAjaxp);
-    //}
+acciones.inactivar = function (id, tag) {
+    ax.addParamTmp(PARAM_ACCION_NAME, "cambiarEstadoVisible");
+    ax.addParamTmp(PARAM_TAG, tag);
+    ax.addParamTmp("id", id);
+    ax.addParamTmp("campo", "estado");
+    ax.addParamTmp("bandera", 0);
+    ax.consumir();
+}
+//acciones.iniciaAjax = function(componenteId){
+//    ax.addParam(PARAM_COMPONENTE_ID, componenteId);
+//    ax.addEventListener("onSuccess", onResponseAjaxp);
+//    ax.addEventListener("onError", acciones.onErrorAjaxp);
+//}
 
-acciones.iniciaAjax = function(opcionId, functionSuccess) {
+acciones.iniciaAjax = function (opcionId, functionSuccess) {
     ax.setOpcion(opcionId);
     ax.setSuccess(functionSuccess);
     ax.addEventListener("onError", acciones.onErrorAjaxp);
 }
-acciones.onErrorAjaxp = function(event) {
+acciones.onErrorAjaxp = function (event) {
     mostrarMensajeNoty("Error", "Se produjo un error no controlado", MENSAJE_ERROR);
 }
 var editor = {};
-editor.getComboValue = function(dgNombre, index, field) {
+editor.getComboValue = function (dgNombre, index, field) {
     var ed = editor.getEd(dgNombre, index, field);
     return $(ed.target).combobox('getValue');
 }
-editor.getComboValues = function(dgNombre, index, field) {
+editor.getComboValues = function (dgNombre, index, field) {
     var ed = editor.getEd(dgNombre, index, field);
     return $(ed.target).combobox('getValues');
 }
-editor.getComboText = function(dgNombre, index, field) {
+editor.getComboText = function (dgNombre, index, field) {
     var ed = editor.getEd(dgNombre, index, field);
     return $(ed.target).combobox('getText');
 }
-editor.isEmptyMultiSelect = function(dgNombre, index, field) {
+editor.isEmptyMultiSelect = function (dgNombre, index, field) {
     var ed = editor.getEd(dgNombre, index, field);
     return isEmpty(ed.target.value());
     //return $(ed.target).combobox('getText');
 }
-editor.getMultiSelectText = function(dgNombre, index, fieldGrid, fieldMulti) {
+editor.getMultiSelectText = function (dgNombre, index, fieldGrid, fieldMulti) {
     if (editor.isEmptyMultiSelect(dgNombre, index, fieldGrid))
         return '';
     var ed = editor.getEd(dgNombre, index, fieldGrid);
     return ed.target.dataItems()[0][fieldMulti];
 }
-editor.setComboTextGrid = function(dgNombre, index, valueField, textField) {
+editor.setComboTextGrid = function (dgNombre, index, valueField, textField) {
     $('#' + dgNombre).datagrid('getRows')[index][textField] = editor.getComboText(dgNombre, index, valueField);
 }
-editor.setMultiSelectGrid = function(dgNombre, index, valueGrid, textGrid, valueMulti, textMulti) {
+editor.setMultiSelectGrid = function (dgNombre, index, valueGrid, textGrid, valueMulti, textMulti) {
     $('#' + dgNombre).datagrid('getRows')[index][valueGrid] = editor.getMultiSelectText(dgNombre, index, valueGrid, valueMulti);
     $('#' + dgNombre).datagrid('getRows')[index][textGrid] = editor.getMultiSelectText(dgNombre, index, valueGrid, textMulti);
 }
-editor.getValue = function(dgNombre, index, field) {
+editor.getValue = function (dgNombre, index, field) {
     var ed = editor.getEd(dgNombre, index, field);
     return ed.target.val();
 }
-editor.getChecked = function(dgNombre, index, field) {
+editor.getChecked = function (dgNombre, index, field) {
     var ed = editor.getEd(dgNombre, index, field);
     return ed.target[0].checked ? 1 : 0;
 }
-editor.getEd = function(dgNombre, index, field) {
+editor.getEd = function (dgNombre, index, field) {
     return $('#' + dgNombre).datagrid('getEditor', { index: index, field: field });
 }
-editor.setComboDataValue = function(dgNombre, index, field, data, value) {
+editor.setComboDataValue = function (dgNombre, index, field, data, value) {
     var ed = $("#" + dgNombre).datagrid('getEditor', { index: index, field: field });
     $(ed.target).combobox({ data: data });
     $(ed.target).combobox('setValue', value);
 }
 
 var datex = {};
-datex.formatoImagina = function(date) {
+datex.formatoImagina = function (date) {
     if (isEmpty(date))
         return;
     var y = date.getFullYear();
@@ -1223,7 +1280,7 @@ datex.formatoImagina = function(date) {
     var d = date.getDate();
     return (d < 10 ? ('0' + d) : d) + '/' + (m < 10 ? ('0' + m) : m) + '/' + y;
 }
-datex.formatoImaginaDG = function(valor) {
+datex.formatoImaginaDG = function (valor) {
     if (valor == '0000-00-00 00:00:00') {
         return "-";
     } else {
@@ -1243,7 +1300,7 @@ datex.formatoImaginaDG = function(valor) {
         return (d < 10 ? ('0' + d) : d) + '/' + (m < 10 ? ('0' + m) : m) + '/' + y;
     }
 }
-datex.parserImagina = function(s) {
+datex.parserImagina = function (s) {
     if (!s)
         return new Date();
     var ss = (s.split('/'));
@@ -1256,7 +1313,7 @@ datex.parserImagina = function(s) {
         return null;
     }
 }
-datex.parserControlador = function(s) {
+datex.parserControlador = function (s) {
     if (isEmpty(s))
         return '';
     var ss = (s.split('/'));
@@ -1277,7 +1334,7 @@ datex.parserControlador = function(s) {
 
     return fecha;
 }
-datex.isDateValida = function(date) {
+datex.isDateValida = function (date) {
     if (Object.prototype.toString.call(date) === "[object Date]") {
         // it is a date
         if (isNaN(date.getTime())) { // d.valueOf() could also work
@@ -1289,10 +1346,10 @@ datex.isDateValida = function(date) {
         return false;
     }
 }
-datex.setNow = function(dbxNombre) {
+datex.setNow = function (dbxNombre) {
     $('#' + dbxNombre).datebox('setValue', datex.getNow1());
 }
-datex.getNow1 = function() {
+datex.getNow1 = function () {
     var date = new Date();
     var y = date.getFullYear();
     var m = date.getMonth() + 1;
@@ -1300,7 +1357,7 @@ datex.getNow1 = function() {
 
     return (d < 10 ? ('0' + d) : d) + '/' + (m < 10 ? ('0' + m) : m) + '/' + y;
 }
-datex.getNow = function() {
+datex.getNow = function () {
     var date = new Date();
     var y = date.getFullYear();
     var m = date.getMonth() + 1;
@@ -1308,21 +1365,21 @@ datex.getNow = function() {
 
     return y + '-' + (m < 10 ? ('0' + m) : m) + '-' + (d < 10 ? ('0' + d) : d);
 }
-datex.parserFecha = function(s) {
+datex.parserFecha = function (s) {
     var ss = (s.split('-'));
     var y = parseInt(ss[0], 10);
     var m = parseInt(ss[1], 10);
     var d = parseInt(ss[2].substr(0, 2), 10);
     return (d < 10 ? ('0' + d) : d) + '/' + (m < 10 ? ('0' + m) : m) + '/' + y;
 }
-datex.setValor = function(componente, valor) {
+datex.setValor = function (componente, valor) {
     if (isEmpty(valor) || valor == '0000-00-00 00:00:00') {
         $("#" + componente).datebox('clear');
     } else {
         $("#" + componente).datebox('setValue', datex.parserFecha(valor));
     }
 }
-datex.getValor = function(componente) {
+datex.getValor = function (componente) {
     var valor = $("#" + componente).datebox('getValue');
     valor = datex.parserControlador(valor);
     if (valor == "")
@@ -1342,7 +1399,7 @@ function uploadFileImport(f, n, d) {
         async: false,
         contentType: false,
         processData: false,
-        success: function(result) {
+        success: function (result) {
             r = result;
         }
     });
@@ -1367,7 +1424,7 @@ function uploadFileAndResponse(f) {
         async: false,
         contentType: false,
         processData: false,
-        success: function(result) {
+        success: function (result) {
             result = result.split(";");
             if (result[0] == 0) {
                 mostrarAdvertencia(result[1]);
@@ -1395,7 +1452,7 @@ function uploadFileAndResponse(f) {
 //    }
 //}
 var datePiker = {
-    iniciar: function(elemento) {
+    iniciar: function (elemento) {
         $(elemento).datepicker({
             isRTL: false,
             format: 'dd/mm/yyyy',
@@ -1403,71 +1460,71 @@ var datePiker = {
             language: 'es'
         });
     },
-    iniciarPorClase: function(clase) {
+    iniciarPorClase: function (clase) {
         this.iniciar('.' + clase);
     },
-    iniciarPorElemento: function(elemento) {
+    iniciarPorElemento: function (elemento) {
         this.iniciar('#' + elemento);
     }
 }
 var select2 = {
-    iniciar: function() {
+    iniciar: function () {
         $(".select2").select2({
             width: '100%'
         });
     },
-    asignarValor: function(id, valor) {
+    asignarValor: function (id, valor) {
         $("#" + id).select2().select2("val", valor);
         $("#" + id).select2({ width: '100%' });
     },
-    readonly: function(id, valor) {
+    readonly: function (id, valor) {
         $("#" + id).select2("readonly", valor);
     },
-    cargar: function(id, data, val, text) {
+    cargar: function (id, data, val, text) {
         $("#" + id).empty();
         if (isArray(text)) {
             var sText;
-            $.each(data, function(index, item) {
+            $.each(data, function (index, item) {
                 sText = "";
-                $.each(text, function(indexText, itemText) {
+                $.each(text, function (indexText, itemText) {
                     sText += (sText === "") ? item[itemText] : " | " + item[itemText];
                 });
                 $('#' + id).append('<option value="' + item[val] + '">' + sText + '</option>');
             });
         } else {
-            $.each(data, function(index, item) {
+            $.each(data, function (index, item) {
                 $('#' + id).append('<option value="' + item[val] + '">' + item[text] + '</option>');
             });
         }
     },
-    cargarSeleccione: function(id, data, val, text, textSeleccione) { //REV.
+    cargarSeleccione: function (id, data, val, text, textSeleccione) { //REV.
         $("#" + id).empty();
         $('#' + id).append('<option value="-1">' + textSeleccione + '</option>');
         if (!isEmpty(data)) {
             if (isArray(text)) {
                 var sText;
-                $.each(data, function(index, item) {
+                $.each(data, function (index, item) {
                     sText = "";
-                    $.each(text, function(indexText, itemText) {
+                    $.each(text, function (indexText, itemText) {
                         sText += (sText === "") ? item[itemText] : " | " + item[itemText];
                     });
                     $('#' + id).append('<option value="' + item[val] + '">' + sText + '</option>');
                 });
             } else {
-                $.each(data, function(index, item) {
+                $.each(data, function (index, item) {
                     $('#' + id).append('<option value="' + item[val] + '">' + item[text] + '</option>');
                 });
             }
         }
     },
-    recargar: function(id, data, val, text) {
+    recargar: function (id, data, val, text) {
         this.limpiar(id);
         this.cargar(id, data, val, text);
     },
-    limpiar: function(id) {
+    limpiar: function (id) {
         $('#' + id).empty();
     },
-    cargarAsignaUnico: function(id, data, val, text) {
+    cargarAsignaUnico: function (id, data, val, text) {
         if (!isEmpty(data)) {
             this.cargar(id, data, val, text);
             if (data.length === 1) {
@@ -1475,25 +1532,25 @@ var select2 = {
             }
         }
     },
-    obtenerValor: function(id) {
+    obtenerValor: function (id) {
         var data = $("#" + id).select2('data');
         if (isEmpty(data))
             return null;
         return (data.hasOwnProperty("id")) ? data.id : null;
     },
-    obtenerText: function(id) {
+    obtenerText: function (id) {
         var data = $("#" + id).select2('data');
         if (isEmpty(data))
             return null;
         return (data.hasOwnProperty("text")) ? data.text : null;
     },
-    obtenerTextMultiple: function(id) {
+    obtenerTextMultiple: function (id) {
         var cadena = "";
         var data = $("#" + id).select2('data');
         if (isEmpty(data)) {
             return null;
         }
-        $.each(data, function(index, item) {
+        $.each(data, function (index, item) {
 
             if (!isEmpty(item.text)) {
                 cadena += item.text + ", ";
