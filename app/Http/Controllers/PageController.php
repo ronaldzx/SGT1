@@ -30,4 +30,14 @@ class PageController extends Controller
         $opcion = App\Opcion::opcionesActivas()->get();
         return view('sgt_tesoreria',compact('opcion'));
     }
+    public function confirmacion_ticket()
+    {
+        $opcion = App\Opcion::opcionesActivas()->get();
+        return view('sgt_confirmacion_ticket',compact('opcion'));
+    }
+    public function administracion_conductor()
+    {
+        $opcion = App\Opcion::opcionesActivas()->get();
+        return view('sgt_administracion_conductor',compact('opcion'));
+    }
 }
