@@ -8,9 +8,11 @@ use App;
 class TicketController extends Controller
 {
     //
-    public function obtener_ticket_activoXdia()
-    {
-        $ticket = App\Ticket::TicketActivo();
+    public function obtener_ticket_activoXdia(Request $data)
+    {            
+        $fecha = $data['fecha'];    
+        $newDate = date("Y-m-d", strtotime($fecha));
+        $ticket = App\Ticket::TicketActivo($newDate);
         return $ticket;
     }
 }

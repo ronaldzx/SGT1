@@ -18,7 +18,8 @@
                 <span class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-calendar22"></i></span>
                 </span>
-                <input type="text" class="form-control daterange-single" value="03/18/2013">
+                <input onchange="obtenerTicketXFecha()" id="txtFecha" type="text" class="form-control daterange-single"
+                    placeholder="yyyy/mm/dd">
             </div>
         </div>
         <div id="resultado"></div>
@@ -103,14 +104,27 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(document).ready(function() {        
+    $(document).ready(function() {
+        var today = new Date(); var dd = today.getDate(); var mm = today.getMonth() + 1;  
+        var yyyy = today.getFullYear();
+        if (dd < 10) { dd='0' + dd; } if (mm < 10) { mm='0' + mm; } var today=mm + '/' + dd + '/' + yyyy;
+        $('#txtFecha').val(today); obtenerTicketXFecha(); 
+    });
+    function obtenerTicketXFecha(){
+        var fecha = $('#txtFecha').val();
         $.ajax({
-           type:'GET',
-           url:"{{ route('obtener_ticket_activoXdia') }}",      
-           beforeSend: function () {               
+            data: {fecha: fecha},
+            dataType:  'json',
+            method: 'post',
+            url:"{{ route('obtener_ticket_activoXdia') }}",      
+            beforeSend: function () {               
                loaderWindow('windowTicket');                        
                 },     
-           success:function(data){
+            success:function(data){
+                var editar = '';
+                var eliminar = '';
+                var confirmar = '';
+                var estado= '';
                 $('#tickets').dataTable({
                     data: data,
                     "order": [0, "asc"],
@@ -124,14 +138,31 @@
                         {"data": "estado", "width": "120px", "sClass": "text-center"},
                         {"data": "id", "width": "120px", "sClass": "text-center"}
                     ],
+                    "columnDefs": [
+                        {
+                            "render":(data,type,row) =>{
+                                switch(row.estado_id){
+                                    case 1:
+                                        estado = '<span class="badge badge-success">'+data+'</span>';
+                                        break;
+                                    case 2:
+                                        estado = '<span class="badge badge-warning">'+data+'</span>';
+                                        break;
+                                    case 3:
+                                        estado = '<span class="badge badge-secondary">'+data+'</span>';
+                                }
+                                return estado;
+                                
+                            },
+                            "targets": 6
+                        }
+                    ],
                     "destroy": true
                 });
                 loaderWindowClose('windowTicket');
-                // $("#resultado").html('');
             }   
-        });
-    });
-
+        });    
+    }
 </script>
 <script src="../resources/js/global_assets/js/planilla/ticket.js?v=<?php echo time();?>"></script>
 @endsection
