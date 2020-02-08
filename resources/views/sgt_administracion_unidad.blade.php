@@ -7,7 +7,7 @@
 <h4><span class="font-weight-semibold">Administración</span> - Unidades</h4>
 @endsection
 @section('seccion')
-<div class="card">
+<div id="windowUnidad" class="card">
     <div class="card-header header-elements-inline">
 
         <div class="col-sm-2">
@@ -28,83 +28,30 @@
                     <th class="text-center">Acciones</th>
                 </tr>
             </thead>
-            <!-- <tbody>
-                <tr>
-                    <td>01</td>
-                    <td>xxxx</td>
-                    <td>xxx</td>
-                    <td>77777777</td>
-                    <td>22</td>
-                    <td><span class="badge badge-success">habilitado</span></td>
-                    <td class="text-center">
-                        <a title="Editar" onclick="nuevoTicket(1)"><i style="color:#EEA40F;" class="icon-pencil5"></i></a>
-                        <a title="Eliminar" onclick="eliminarTicket()"><i style="color:#EE2D0F;" class="icon-trash"></i></a>
-                        <a title="Confirmar" onclick="confirmarTicket()"><i style="color:#32B01C;" class="icon-checkmark4"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>02</td>
-                    <td>xxxx</td>
-                    <td>xxx</td>
-                    <td>77777777</td>
-                    <td>22</td>
-                    <td><span class="badge badge-success">habilitado</span></td>
-                    <td class="text-center">
-                        <a title="Editar" onclick="nuevoTicket(1)"><i style="color:#EEA40F;" class="icon-pencil5"></i></a>
-                        <a title="Eliminar" onclick="eliminarTicket()"><i style="color:#EE2D0F;" class="icon-trash"></i></a>
-                        <a title="Confirmar" onclick="confirmarTicket()"><i style="color:#32B01C;" class="icon-checkmark4"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>03</td>
-                    <td>xxxx</td>
-                    <td>xxx</td>
-                    <td>77777777</td>
-                    <td>22</td>
-                    <td><span class="badge badge-success">habilitado</span></td>
-                    <td class="text-center">
-                        <a title="Editar" onclick="nuevoTicket(1)"><i style="color:#EEA40F;" class="icon-pencil5"></i></a>
-                        <a title="Eliminar" onclick="eliminarTicket()"><i style="color:#EE2D0F;" class="icon-trash"></i></a>
-                        <a title="Confirmar" onclick="confirmarTicket()"><i style="color:#32B01C;" class="icon-checkmark4"></i></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>04</td>
-                    <td>xxxx</td>
-                    <td>xxx</td>
-                    <td>77777777</td>
-                    <td>22</td>
-                    <td><span class="badge badge-success">habilitado</span></td>
-                    <td class="text-center">
-                        <a title="Editar" onclick="nuevoTicket(1)"><i style="color:#EEA40F;" class="icon-pencil5"></i></a>
-                        <a title="Eliminar" onclick="eliminarTicket()"><i style="color:#EE2D0F;" class="icon-trash"></i></a>
-                        <a title="Confirmar" onclick="confirmarTicket()"><i style="color:#32B01C;" class="icon-checkmark4"></i></a>
-                    </td>
-                </tr>
-            </tbody> -->
         </table>
     </div>
 
 </div>
 <!-- Vertical form modal -->
-<div id="ticketModal" class="modal fade" tabindex="-1">
+<div id="unidadModal" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary">
-                <h5 class="modal-title">Datos del Conductor</h5>
+                <h5 class="modal-title">Datos de las Unidades</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-6">
-                            <label>Nombres</label>
-                            <input type="text" placeholder="Ingrese Nombres" class="form-control">
+                            <label>Nombre de unidad</label>
+                            <input id="txtUnidad" type="text" placeholder="Ingrese Nombre de Unidad" class="form-control">
                         </div>
 
                         <div class="col-sm-6">
-                            <label>Apellidos</label>
-                            <input type="text" placeholder="Ingrese Apellidos" class="form-control">
+                            <label>Socio</label>
+                            <select id="cboSocio" class="form-control select-search" data-fouc>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -112,41 +59,62 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-6">
-                            <label>DNI</label>
-                            <input type="text" placeholder=" Numero de DNI" class="form-control">
+                            <label>Placa</label>
+                            <input id="txtPlaca" type="text" placeholder="Ingresar Placa" class="form-control">
                         </div>
 
                         <div class="col-sm-6">
-                            <label>Edad</label>
-                            <input type="text" placeholder="Ingrese Edad en #" class="form-control">
+                            <label>Modelo</label>
+                            <input id="txtModelo" type="text" placeholder="Año de producción" class="form-control">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-
-                    <div class="col-sm-6">
-                        <label># Celular</label>
-                        <input type="text" placeholder="+51-999-999-999" data-mask="+51-99-9999-9999" class="form-control">
-                        <span class="form-text text-muted">+51-999-999-999</span>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Marca</label>
+                            <input id="txtMarca" type="text" placeholder="Marca del vehiculo" class="form-control">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Soat Vence</label>
+                            <div class="input-group">
+                                <span class="input-group-prepend">
+                                    <span class="input-group-text"><i class="icon-calendar22"></i></span>
+                                </span>
+                                <input onchange="obtenerTicketXFecha()" id="txtSoatVence" type="text" class="form-control daterange-single" placeholder="yyyy/mm/dd">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Estado</label>
+                            <select id="cboEstado" class="form-control select-search" data-fouc>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-link" data-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn bg-primary">Enviar Cambios</button>
+                <button class="btn btn-link" data-dismiss="modal">Cerrar</button>
+                <button onclick="guardarUnidad()" class="btn bg-primary">Agregar</button>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
+    var idUnidad = null;
     $(document).ready(function() {
+        DateTimePickers.init();
+        Select2Selects.init();
         var editar = '';
         var eliminar = '';
         var penalidad = '';
         $.ajax({
             type: 'GET',
             url: "{{ route('obtener_unidad_activo') }}",
-
+            beforeSend: function() {
+                loaderWindow('windowUnidad');
+            },
             success: function(data) {
                 $('#unidades').dataTable({
                     data: data,
@@ -182,7 +150,12 @@
                             "sClass": "text-center"
                         },
                         {
-                            "data": "estado",
+                            "data": "estado_descripcion",
+                            "width": "80px",
+                            "sClass": "text-center"
+                        },
+                        {
+                            "data": "id",
                             "width": "80px",
                             "sClass": "text-center"
                         }
@@ -195,16 +168,86 @@
                             },
                             "targets": 7
                         },
-                        
+
                     ],
                     "destroy": true
                 });
-
+                loaderWindowClose('windowUnidad');
             }
         });
     });
+
+    function obtenerTicketXFecha() {
+
+    }
+
+    function nuevoConductor(id) {
+        var btnNuevo = '';
+        $('#unidadModal').modal('show');
+        if (id) {
+            idUnidad = id;
+            // btnNuevo += '<div class="card-header"><div class="form-group">';
+            // btnNuevo += '<button onclick="agregarPenalidad()" type="button" class="btn bg-primary btn-labeled btn-labeled-left rounded-round"><b><i class="icon-plus2"></i></b>Nueva penalidad</button>';
+            // btnNuevo += '</div></div>';
+            // btnNuevo += '<div class="card-body" id="bodyPenalidades"></div>'
+        }else{
+            idUnidad = null;
+        }
+        $('#cardPenalidades').html(btnNuevo);
+        obtenerConfiguracionesUnidad();
+    }
+
+    function obtenerConfiguracionesUnidad() {
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('obtener_configuracion_unidad') }}",
+            beforeSend: function() {
+                loaderWindow('unidadModal');
+            },
+            success: function(data) {
+                var socios = data[0];
+                var estados = data[1];
+                cargarSelect('cboSocio', 'id', 'socio', socios);
+                cargarSelect('cboEstado', 'id', 'descripcion', estados);
+                loaderWindowClose('unidadModal');
+            }
+        });
+    }
+
+    function guardarUnidad() {
+        var id = idUnidad;
+        var nombre = $('#txtNombre').val();
+        var socio = $('cboSocio').val();
+        var placa = $('txtPlaca').val();
+        var modelo = $('txtModelo').val();
+        var marca = $('txtMarca').val();
+        var soatVence = $('txtSoatVence').val();
+        var estado = $('cboEstado').val();
+        $.ajax({
+            data: {
+                id:id,
+                nombre: nombre,
+                socio:socio,
+                placa:placa,
+                modelo:modelo,
+                marca:marca,
+                soatVence:soatVence,
+                estado:estado
+            },
+            dataType: 'json',
+            method: 'post',
+            url: "{{ route('guardar_unidad') }}",
+            beforeSend: function() {
+                loaderWindow('windowTicket');
+            },
+            success: function(data) {      
+                console.log(data);      
+                loaderWindowClose('windowTicket');
+            }
+        });
+    }
 </script>
 
 <!-- /vertical form modal -->
-<script src="../resources/js/global_assets/js/planilla/administracion_conductor.js"></script>
+<!-- <script src="../resources/js/global_assets/js/planilla/administracion_conductor.js"></script> -->
 @endsection

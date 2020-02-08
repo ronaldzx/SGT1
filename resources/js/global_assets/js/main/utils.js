@@ -6,6 +6,31 @@ $(document).ready(function() {
     });
 });
 
+function cargarSelect(cboId,itemId,ItemDes,data){
+    document.getElementById(cboId).innerHTML = '';
+    if(!isEmpty(data)){
+        // $('#'+cboId).append('<option value ="">Todos</option>');
+        $.each(data,function(index,item){
+            $('#'+cboId).append('<option value ="'+item[itemId] + '">' + item[ItemDes]+'</option>');
+        });
+    }
+}
+function isEmpty(value)
+{
+    if ($.type(value) === 'undefined')
+        return true;
+    if ($.type(value) === 'null')
+        return true;
+    if ($.type(value) === 'string' && value.length <= 0)
+        return true;
+    if ($.type(value) === 'array' && value.length === 0)
+        return true;
+    if ($.type(value) === 'number' && isNaN(parseInt(value)))
+        return true;
+
+    return false;
+}
+
 function ajaxGet(url, onResponse) {
     $.ajax({
         type: 'GET',
