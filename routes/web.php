@@ -17,7 +17,7 @@ Route::get('admin_unidad','PageController@administracion_unidad')->name('admin_u
 
 //rutas para obtener datos
 
-Route::get('obtener_ticket_activoXdia','TicketController@obtener_ticket_activoXdia')->name('obtener_ticket_activoXdia');
+Route::post('obtener_ticket_activoXdia}','TicketController@obtener_ticket_activoXdia')->name('obtener_ticket_activoXdia');
 
 Route::get('obtener_conductor_activo','ConductorController@obtener_conductor_activo')->name('obtener_conductor_activo');
 Route::get('obtener_unidad_activo','UnidadController@obtener_unidad_activo')->name('obtener_unidad_activo');

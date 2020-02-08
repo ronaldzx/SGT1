@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>SGT</title>
 
     <!-- Fonts -->
@@ -20,7 +20,7 @@
     <link href="../resources/js/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
     <link href="../resources/js/assets/css/layout.min.css" rel="stylesheet" type="text/css">
     <link href="../resources/js/assets/css/components.min.css" rel="stylesheet" type="text/css">
-    <link href="../resources/js/assets/css/colors.min.css" rel="stylesheet" type="text/css">
+    <link href="../resources/js/assets/css/colors.min.css" rel="stylesheet" type="text/css">    
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
