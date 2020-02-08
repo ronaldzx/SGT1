@@ -105,16 +105,18 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
+        DateTimePickers.init();
         var today = new Date(); var dd = today.getDate(); var mm = today.getMonth() + 1;  
         var yyyy = today.getFullYear();
-        if (dd < 10) { dd='0' + dd; } if (mm < 10) { mm='0' + mm; } var today=mm + '/' + dd + '/' + yyyy;
-        $('#txtFecha').val(today); obtenerTicketXFecha(); 
+        if (dd < 10) { dd='0' + dd; } if (mm < 10) { mm='0' + mm; } var today=dd + '/' + mm + '/' + yyyy;
+        $('#txtFecha').val(today); 
+        obtenerTicketXFecha(); 
     });
     function obtenerTicketXFecha(){
         var fecha = $('#txtFecha').val();
         $.ajax({
             data: {fecha: fecha},
-            dataType:  'json',
+            dataType:'json',
             method: 'post',
             url:"{{ route('obtener_ticket_activoXdia') }}",      
             beforeSend: function () {               

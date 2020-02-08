@@ -10,7 +10,7 @@
 // Setup module
 // ------------------------------
 
-var DateTimePickers = function() {
+var DateTimePickers = function () {
 
 
     //
@@ -18,7 +18,7 @@ var DateTimePickers = function() {
     //
 
     // Daterange picker
-    var _componentDaterange = function() {
+    var _componentDaterange = function () {
         if (!$().daterangepicker) {
             console.warn('Warning - daterangepicker.js is not loaded.');
             return;
@@ -49,7 +49,7 @@ var DateTimePickers = function() {
             applyClass: 'bg-slate-600',
             cancelClass: 'btn-light',
             locale: {
-                format: 'MM/DD/YYYY h:mm a'
+                format: 'DD/MM/YYYY h:mm a'
             }
         });
 
@@ -61,10 +61,10 @@ var DateTimePickers = function() {
         });
 
         // Single picker
-        $('.daterange-single').daterangepicker({ 
+        $('.daterange-single').daterangepicker({
             singleDatePicker: true,
             locale: {
-                format: 'YYYY/MM/DD'
+                format: 'DD/MM/YYYY'
             }
         });
 
@@ -84,7 +84,7 @@ var DateTimePickers = function() {
             cancelClass: 'btn-light',
             timePickerIncrement: 10,
             locale: {
-                format: 'MM/DD/YYYY h:mm a'
+                format: 'DD/MM/YYYY h:mm a'
             }
         });
 
@@ -107,7 +107,7 @@ var DateTimePickers = function() {
                 startLabel: 'Начальная дата',
                 endLabel: 'Конечная дата',
                 customRangeLabel: 'Выбрать дату',
-                daysOfWeek: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт','Сб'],
+                daysOfWeek: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
                 monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
                 firstDay: 1
             }
@@ -120,32 +120,32 @@ var DateTimePickers = function() {
 
         // Initialize with options
         $('.daterange-predefined').daterangepicker(
-            {
-                startDate: moment().subtract(29, 'days'),
-                endDate: moment(),
-                minDate: '01/01/2014',
-                maxDate: '12/31/2019',
-                dateLimit: { days: 60 },
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                {
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment(),
+                    minDate: '01/01/2014',
+                    maxDate: '12/31/2019',
+                    dateLimit: {days: 60},
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    opens: 'left',
+                    applyClass: 'btn-sm bg-slate',
+                    cancelClass: 'btn-sm btn-light'
                 },
-                opens: 'left',
-                applyClass: 'btn-sm bg-slate',
-                cancelClass: 'btn-sm btn-light'
-            },
-            function(start, end) {
-                $('.daterange-predefined span').html(start.format('MMMM D, YYYY') + ' &nbsp; - &nbsp; ' + end.format('MMMM D, YYYY'));
-                $.jGrowl('Date range has been changed', { header: 'Update', theme: 'bg-primary', position: 'center', life: 1500 });
-            }
+                function (start, end) {
+                    $('.daterange-predefined span').html(start.format('D MMMM, YYYY') + ' &nbsp; - &nbsp; ' + end.format('D MMMM, YYYY'));
+                    $.jGrowl('Date range has been changed', {header: 'Update', theme: 'bg-primary', position: 'center', life: 1500});
+                }
         );
 
         // Display date format
-        $('.daterange-predefined span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' &nbsp; - &nbsp; ' + moment().format('MMMM D, YYYY'));
+        $('.daterange-predefined span').html(moment().subtract(29, 'days').format('D MMMM, YYYY') + ' &nbsp; - &nbsp; ' + moment().format('D MMMM, YYYY'));
 
 
         //
@@ -154,35 +154,35 @@ var DateTimePickers = function() {
 
         // Initialize with options
         $('.daterange-ranges').daterangepicker(
-            {
-                startDate: moment().subtract(29, 'days'),
-                endDate: moment(),
-                minDate: '01/01/2012',
-                maxDate: '12/31/2019',
-                dateLimit: { days: 60 },
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                {
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment(),
+                    minDate: '01/01/2012',
+                    maxDate: '12/31/2019',
+                    dateLimit: {days: 60},
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    opens: 'left',
+                    applyClass: 'btn-sm bg-slate-600',
+                    cancelClass: 'btn-sm btn-light'
                 },
-                opens: 'left',
-                applyClass: 'btn-sm bg-slate-600',
-                cancelClass: 'btn-sm btn-light'
-            },
-            function(start, end) {
-                $('.daterange-ranges span').html(start.format('MMMM D, YYYY') + ' &nbsp; - &nbsp; ' + end.format('MMMM D, YYYY'));
-            }
+                function (start, end) {
+                    $('.daterange-ranges span').html(start.format('D MMMM, YYYY') + ' &nbsp; - &nbsp; ' + end.format('D MMMM, YYYY'));
+                }
         );
 
         // Display date format
-        $('.daterange-ranges span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' &nbsp; - &nbsp; ' + moment().format('MMMM D, YYYY'));
+        $('.daterange-ranges span').html(moment().subtract(29, 'days').format('D MMMM, YYYY') + ' &nbsp; - &nbsp; ' + moment().format('D MMMM, YYYY'));
     };
 
     // Pickadate picker
-    var _componentPickadate = function() {
+    var _componentPickadate = function () {
         if (!$().pickadate) {
             console.warn('Warning - picker.js and/or picker.date.js is not loaded.');
             return;
@@ -228,7 +228,7 @@ var DateTimePickers = function() {
 
             // Escape any “rule” characters with an exclamation mark (!).
             format: 'You selecte!d: dddd, dd mmm, yyyy',
-            formatSubmit: 'yyyy/mm/dd',
+            formatSubmit: 'dd/mm/yyyy',
             hiddenPrefix: 'prefix__',
             hiddenSuffix: '__suffix'
         });
@@ -236,17 +236,17 @@ var DateTimePickers = function() {
         // Editable input
         var $input_date = $('.pickadate-editable').pickadate({
             editable: true,
-            onClose: function() {
+            onClose: function () {
                 $('.datepicker').focus();
             }
         });
         var picker_date = $input_date.pickadate('picker');
-        $input_date.on('click', function(event) {
+        $input_date.on('click', function (event) {
             if (picker_date.get('open')) {
                 picker_date.close();
             } else {
                 picker_date.open();
-            }                        
+            }
             event.stopPropagation();
         });
 
@@ -268,16 +268,16 @@ var DateTimePickers = function() {
 
         // Date limits
         $('.pickadate-limits').pickadate({
-            min: [2014,3,20],
-            max: [2014,7,14]
+            min: [2014, 3, 20],
+            max: [2014, 7, 14]
         });
 
         // Disable certain dates
         $('.pickadate-disable').pickadate({
             disable: [
-                [2015,8,3],
-                [2015,8,12],
-                [2015,8,20]
+                [2015, 8, 3],
+                [2015, 8, 12],
+                [2015, 8, 20]
             ]
         });
 
@@ -286,37 +286,37 @@ var DateTimePickers = function() {
             disable: [
                 5,
                 [2013, 10, 21, 'inverted'],
-                { from: [2014, 3, 15], to: [2014, 3, 25] },
+                {from: [2014, 3, 15], to: [2014, 3, 25]},
                 [2014, 3, 20, 'inverted'],
-                { from: [2014, 3, 17], to: [2014, 3, 18], inverted: true }
+                {from: [2014, 3, 17], to: [2014, 3, 18], inverted: true}
             ]
         });
 
         // Events
         $('.pickadate-events').pickadate({
-            onStart: function() {
+            onStart: function () {
                 console.log('Hello there :)')
             },
-            onRender: function() {
+            onRender: function () {
                 console.log('Whoa.. rendered anew')
             },
-            onOpen: function() {
+            onOpen: function () {
                 console.log('Opened up')
             },
-            onClose: function() {
+            onClose: function () {
                 console.log('Closed now')
             },
-            onStop: function() {
+            onStop: function () {
                 console.log('See ya.')
             },
-            onSet: function(context) {
+            onSet: function (context) {
                 console.log('Just set stuff:', context)
             }
         });
     };
 
     // Pickatime picker
-    var _componentPickatime = function() {
+    var _componentPickatime = function () {
         if (!$().pickatime) {
             console.warn('Warning - picker.js and/or picker.time.js is not loaded.');
             return;
@@ -350,17 +350,17 @@ var DateTimePickers = function() {
         // Editable input
         var $input_time = $('.pickatime-editable').pickatime({
             editable: true,
-            onClose: function() {
+            onClose: function () {
                 $('.datepicker').focus();
             }
         });
         var picker_time = $input_time.pickatime('picker');
-        $input_time.on('click', function(event) {
+        $input_time.on('click', function (event) {
             if (picker_time.get('open')) {
                 picker_time.close();
             } else {
                 picker_time.open();
-            }                        
+            }
             event.stopPropagation();
         });
 
@@ -372,8 +372,8 @@ var DateTimePickers = function() {
 
         // Time limits
         $('.pickatime-limits').pickatime({
-            min: [7,30],
-            max: [14,0]
+            min: [7, 30],
+            max: [14, 0]
         });
 
         // Using integers as hours
@@ -386,10 +386,10 @@ var DateTimePickers = function() {
         // Disable times
         $('.pickatime-disabled').pickatime({
             disable: [
-                [0,30],
-                [2,0],
-                [8,30],
-                [9,0]
+                [0, 30],
+                [2, 0],
+                [8, 30],
+                [9, 0]
             ]
         });
 
@@ -398,9 +398,9 @@ var DateTimePickers = function() {
             disable: [
                 1,
                 [1, 30, 'inverted'],
-                { from: [4, 30], to: [10, 30] },
+                {from: [4, 30], to: [10, 30]},
                 [6, 30, 'inverted'],
-                { from: [8, 0], to: [9, 0], inverted: true }
+                {from: [8, 0], to: [9, 0], inverted: true}
             ]
         });
 
@@ -409,38 +409,38 @@ var DateTimePickers = function() {
             disable: [
                 true,
                 3, 5, 7,
-                [0,30],
-                [2,0],
-                [8,30],
-                [9,0]
+                [0, 30],
+                [2, 0],
+                [8, 30],
+                [9, 0]
             ]
         });
 
         // Events
         $('.pickatime-events').pickatime({
-            onStart: function() {
+            onStart: function () {
                 console.log('Hello there :)')
             },
-            onRender: function() {
+            onRender: function () {
                 console.log('Whoa.. rendered anew')
             },
-            onOpen: function() {
+            onOpen: function () {
                 console.log('Opened up')
             },
-            onClose: function() {
+            onClose: function () {
                 console.log('Closed now')
             },
-            onStop: function() {
+            onStop: function () {
                 console.log('See ya.')
             },
-            onSet: function(context) {
+            onSet: function (context) {
                 console.log('Just set stuff:', context)
             }
         });
     };
 
     // Anytime picker
-    var _componentAnytime = function() {
+    var _componentAnytime = function () {
         if (!$().AnyTime_picker) {
             console.warn('Warning - anytime.min.js is not loaded.');
             return;
@@ -494,9 +494,9 @@ var DateTimePickers = function() {
         //
 
         // Options
-        var oneDay = 24*60*60*1000;
+        var oneDay = 24 * 60 * 60 * 1000;
         var rangeDemoFormat = '%e-%b-%Y';
-        var rangeDemoConv = new AnyTime.Converter({format:rangeDemoFormat});
+        var rangeDemoConv = new AnyTime.Converter({format: rangeDemoFormat});
 
         // Set today's date
         $('#rangeDemoToday').on('click', function (e) {
@@ -514,29 +514,27 @@ var DateTimePickers = function() {
         });
 
         // On value change
-        $('#rangeDemoStart').on('change', function(e) {
+        $('#rangeDemoStart').on('change', function (e) {
             try {
                 var fromDay = rangeDemoConv.parse($('#rangeDemoStart').val()).getTime();
 
-                var dayLater = new Date(fromDay+oneDay);
-                    dayLater.setHours(0,0,0,0);
+                var dayLater = new Date(fromDay + oneDay);
+                dayLater.setHours(0, 0, 0, 0);
 
-                var ninetyDaysLater = new Date(fromDay+(90*oneDay));
-                    ninetyDaysLater.setHours(23,59,59,999);
+                var ninetyDaysLater = new Date(fromDay + (90 * oneDay));
+                ninetyDaysLater.setHours(23, 59, 59, 999);
 
                 // End date
                 $('#rangeDemoFinish')
-                .AnyTime_noPicker()
-                .removeAttr('disabled')
-                .val(rangeDemoConv.format(dayLater))
-                .AnyTime_picker({
-                    earliest: dayLater,
-                    format: rangeDemoFormat,
-                    latest: ninetyDaysLater
-                });
-            }
-
-            catch(e) {
+                        .AnyTime_noPicker()
+                        .removeAttr('disabled')
+                        .val(rangeDemoConv.format(dayLater))
+                        .AnyTime_picker({
+                            earliest: dayLater,
+                            format: rangeDemoFormat,
+                            latest: ninetyDaysLater
+                        });
+            } catch (e) {
 
                 // Disable End date field
                 $('#rangeDemoFinish').val('').attr('disabled', 'disabled');
@@ -550,7 +548,7 @@ var DateTimePickers = function() {
     //
 
     return {
-        init: function() {
+        init: function () {
             _componentDaterange();
             _componentPickadate();
             _componentPickatime();
@@ -563,6 +561,6 @@ var DateTimePickers = function() {
 // Initialize module
 // ------------------------------
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     DateTimePickers.init();
 });

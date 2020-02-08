@@ -46,7 +46,7 @@
     <script src="../resources/js/assets/js/app.js"></script>
     <script src="../resources/js/global_assets/js/demo_pages/components_progress.js"></script>
     <script src="../resources/js/global_assets/js/demo_pages/form_inputs.js"></script>
-    <script src="../resources/js/global_assets/js/demo_pages/picker_date.js"></script>
+    <script src="../resources/js/global_assets/js/demo_pages/picker_date.js?v=<?php echo time();?>"></script>
     <script src="../resources/js/global_assets/js/demo_pages/form_select2.js"></script>
     <script src="../resources/js/global_assets/js/demo_pages/datatables_basic.js"></script> 
     <script src="../resources/js/global_assets/js/demo_pages/datatables_data_sources.js"></script>   
