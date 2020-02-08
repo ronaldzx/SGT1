@@ -11,7 +11,7 @@
     <div class="card-header header-elements-inline">
 
         <div class="col-sm-2">
-            <button type="button" onclick="nuevoConductor()" class="btn btn-primary">Agregar Unidades</button>
+            <button type="button" onclick="nuevaUnidad()" class="btn btn-primary">Agregar Unidades</button>
         </div>
     </div>
     <div class="card-body">
@@ -45,7 +45,8 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label>Nombre de unidad</label>
-                            <input id="txtUnidad" type="text" placeholder="Ingrese Nombre de Unidad" class="form-control">
+                            <input id="txtUnidad" type="text" placeholder="Ingrese Nombre de Unidad"
+                                class="form-control">
                         </div>
 
                         <div class="col-sm-6">
@@ -81,7 +82,8 @@
                                 <span class="input-group-prepend">
                                     <span class="input-group-text"><i class="icon-calendar22"></i></span>
                                 </span>
-                                <input onchange="obtenerTicketXFecha()" id="txtSoatVence" type="text" class="form-control daterange-single" placeholder="yyyy/mm/dd">
+                                <input id="txtSoatVence" type="text"
+                                    class="form-control daterange-single" placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
@@ -106,6 +108,10 @@
     $(document).ready(function() {
         DateTimePickers.init();
         Select2Selects.init();
+        obtenerUnidad();
+    });
+    
+    function obtenerUnidad() {
         var editar = '';
         var eliminar = '';
         var penalidad = '';
@@ -162,8 +168,8 @@
                     ],
                     "columnDefs": [{
                             "render": (data, type, row) => {
-                                editar = '<a title="Editar" onclick="nuevoTicket(' + data + ')"><i style="color:#EEA40F;" class="icon-pencil5"></i></a>';
-                                eliminar = '<a title="Eliminar" onclick="eliminarTicket(' + data + ')"><i style="color:#EE2D0F;" class="icon-trash"></i></a>';
+                                editar = '<a title="Editar" onclick="nuevaUnidad(' + data + ')"><i style="color:#EEA40F;" class="icon-pencil5"></i></a>';
+                                eliminar = '<a title="Eliminar" onclick="eliminarUnidad(' + data + ')"><i style="color:#EE2D0F;" class="icon-trash"></i></a>';
                                 return editar + ' ' + eliminar;
                             },
                             "targets": 7
@@ -175,13 +181,9 @@
                 loaderWindowClose('windowUnidad');
             }
         });
-    });
-
-    function obtenerTicketXFecha() {
-
     }
 
-    function nuevoConductor(id) {
+    function nuevaUnidad(id) {
         var btnNuevo = '';
         $('#unidadModal').modal('show');
         if (id) {
@@ -216,13 +218,13 @@
 
     function guardarUnidad() {
         var id = idUnidad;
-        var nombre = $('#txtNombre').val();
-        var socio = $('cboSocio').val();
-        var placa = $('txtPlaca').val();
-        var modelo = $('txtModelo').val();
-        var marca = $('txtMarca').val();
-        var soatVence = $('txtSoatVence').val();
-        var estado = $('cboEstado').val();
+        var nombre = $('#txtUnidad').val();
+        var socio = $('#cboSocio').val();
+        var placa = $('#txtPlaca').val();
+        var modelo = $('#txtModelo').val();
+        var marca = $('#txtMarca').val();
+        var soatVence = $('#txtSoatVence').val();
+        var estado = $('#cboEstado').val();
         $.ajax({
             data: {
                 id:id,
@@ -240,11 +242,20 @@
             beforeSend: function() {
                 loaderWindow('windowTicket');
             },
-            success: function(data) {      
-                console.log(data);      
-                loaderWindowClose('windowTicket');
+            success: function(data) {  
+                afterSendUnidad(data);                  
             }
         });
+    }
+    function afterSendUnidad(data){
+        if(data[0]['vout_exito']==1){
+            console.log('Se ha actualizado la unidad ',data[0]['unidad'])  
+        }else{
+            console.log('Se ha insertado la unidad ',data[0]['unidad'])  
+        }                   
+        loaderWindowClose('windowTicket');
+        $('#unidadModal').modal('hide');
+        obtenerUnidad();
     }
 </script>
 
