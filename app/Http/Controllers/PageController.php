@@ -41,4 +41,9 @@ class PageController extends Controller
         $opcion = App\Opcion::opcionesActivas()->get();
         return view('sgt_administracion_conductor',compact('opcion'));
     }
+    public function administracion_unidad()
+    {
+        $opcion = App\Opcion::opcionesActivas()->get();
+        return view('sgt_administracion_unidad',compact('opcion'));
+    }
 }

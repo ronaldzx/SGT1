@@ -1,27 +1,29 @@
 @extends('sgt_menu')
 @section('sub-cabecera')
-<a class="breadcrumb-item">Administrar Conductores</a>
-<span class="breadcrumb-item active">Administrar Conductor</span>
+<a class="breadcrumb-item">Administrar Unidades</a>
+<span class="breadcrumb-item active">Administrar Unidades</span>
 @endsection
 @section('cabecera')
-<h4><span class="font-weight-semibold">Administración</span> - Conductor</h4>
+<h4><span class="font-weight-semibold">Administración</span> - Unidades</h4>
 @endsection
 @section('seccion')
 <div class="card">
     <div class="card-header header-elements-inline">
 
         <div class="col-sm-2">
-            <button type="button" onclick="nuevoConductor()" class="btn btn-primary">Agregar Conductor</button>
+            <button type="button" onclick="nuevoConductor()" class="btn btn-primary">Agregar Unidades</button>
         </div>
     </div>
     <div class="card-body">
-        <table id="conductores" class="table datatable-basic">
+        <table id="unidades" class="table datatable-basic">
             <thead>
                 <tr>
-                    <th class="text-center">Conductor</th>
-                    <th class="text-center">DNI</th>
-                    <th class="text-center">Edad</th>
-                    <th class="text-center">Telefono</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Socio</th>
+                    <th class="text-center">Placa</th>
+                    <th class="text-center">Modelo</th>
+                    <th class="text-center">Marca</th>
+                    <th class="text-center">Soat Vence</th>
                     <th class="text-center">Estado</th>
                     <th class="text-center">Acciones</th>
                 </tr>
@@ -143,40 +145,45 @@
         var penalidad = '';
         $.ajax({
             type: 'GET',
-            url: "{{ route('obtener_conductor_activo') }}",
+            url: "{{ route('obtener_unidad_activo') }}",
 
             success: function(data) {
-                $('#conductores').dataTable({
+                $('#unidades').dataTable({
                     data: data,
                     "order": [0, "asc"],
                     "columns": [{
-                            "data": "conductor",
+                            "data": "nombre",
+                            "width": "120px",
+                            "sClass": "text-center"
+                        },
+                        {
+                            "data": "socio",
+                            "width": "120px",
+                            "sClass": "text-center"
+                        },
+                        {
+                            "data": "placa",
                             "width": "80px",
                             "sClass": "text-center"
                         },
                         {
-                            "data": "dni",
+                            "data": "modelo",
                             "width": "80px",
                             "sClass": "text-center"
                         },
                         {
-                            "data": "edad",
+                            "data": "marca",
+                            "width": "80px",
+                            "sClass": "text-center"
+                        },
+                        {
+                            "data": "soat_vence",
                             "width": "120px",
                             "sClass": "text-center"
                         },
                         {
-                            "data": "telefono",
-                            "width": "120px",
-                            "sClass": "text-center"
-                        },
-                        {
-                            "data": "tiene_penalidad",
-                            "width": "120px",
-                            "sClass": "text-center"
-                        },
-                        {
-                            "data": "id",
-                            "width": "120px",
+                            "data": "estado",
+                            "width": "80px",
                             "sClass": "text-center"
                         }
                     ],
@@ -186,23 +193,9 @@
                                 eliminar = '<a title="Eliminar" onclick="eliminarTicket(' + data + ')"><i style="color:#EE2D0F;" class="icon-trash"></i></a>';
                                 return editar + ' ' + eliminar;
                             },
-                            "targets": 5
+                            "targets": 7
                         },
-                        {
-                            "render": (data, type, row) => {
-                                switch (data) {
-                                    case 1:
-                                        penalidad = '<span class="badge badge-danger">Penalidad</span>'
-                                        break;
-                                    case 0:
-                                        penalidad = '<span class="badge badge-success">Sin penalidad</span>'
-                                        break;
-                                }
-
-                                return penalidad;
-                            },
-                            "targets": 4
-                        }
+                        
                     ],
                     "destroy": true
                 });
