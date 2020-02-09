@@ -15,10 +15,11 @@ Route::get('obtener_unidad_activo','UnidadController@obtener_unidad_activo')->na
 //rutas para obtener datos
 //get
 Route::get('obtener_conductor_activo','ConductorController@obtener_conductor_activo')->name('obtener_conductor_activo');
-Route::get('obtener_configuracion_unidad','UnidadController@obtenerConfiguracionesUnidad')->name('obtener_configuracion_unidad');
+Route::post('obtener_configuracion_unidad','UnidadController@obtenerConfiguracionesUnidad')->name('obtener_configuracion_unidad');
 //post
 Route::post('obtener_ticket_activoXdia','TicketController@obtener_ticket_activoXdia')->name('obtener_ticket_activoXdia');
 Route::post('guardar_unidad','UnidadController@guardar_unidad')->name('guardar_unidad');
+Route::post('eliminar_unidad','UnidadController@eliminar_unidad')->name('eliminar_unidad');
 
 
 // Route::get('tesoreria', function () {

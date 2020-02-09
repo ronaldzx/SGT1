@@ -51,7 +51,7 @@
 
                         <div class="col-sm-6">
                             <label>Socio</label>
-                            <select id="cboSocio" class="form-control select-search" data-fouc>
+                            <select id="cboSocio" class="form-control select" data-fouc>
                             </select>
                         </div>
                     </div>
@@ -82,15 +82,15 @@
                                 <span class="input-group-prepend">
                                     <span class="input-group-text"><i class="icon-calendar22"></i></span>
                                 </span>
-                                <input id="txtSoatVence" type="text"
-                                    class="form-control daterange-single" placeholder="yyyy/mm/dd">
+                                <input id="txtSoatVence" type="text" class="form-control daterange-single"
+                                    placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <label>Estado</label>
-                            <select id="cboEstado" class="form-control select-search" data-fouc>
+                            <select id="cboEstado" class="form-control select">
                             </select>
                         </div>
                     </div>
@@ -110,8 +110,7 @@
         Select2Selects.init();
         obtenerUnidad();
     });
-    
-    function obtenerUnidad() {
+    function obtenerUnidad(i) {
         var editar = '';
         var eliminar = '';
         var penalidad = '';
@@ -119,7 +118,9 @@
             type: 'GET',
             url: "{{ route('obtener_unidad_activo') }}",
             beforeSend: function() {
-                loaderWindow('windowUnidad');
+                if(i != 1){
+                    loaderWindow('windowUnidad');
+                }
             },
             success: function(data) {
                 $('#unidades').dataTable({
@@ -168,8 +169,8 @@
                     ],
                     "columnDefs": [{
                             "render": (data, type, row) => {
-                                editar = '<a title="Editar" onclick="nuevaUnidad(' + data + ')"><i style="color:#EEA40F;" class="icon-pencil5"></i></a>';
-                                eliminar = '<a title="Eliminar" onclick="eliminarUnidad(' + data + ')"><i style="color:#EE2D0F;" class="icon-trash"></i></a>';
+                                editar = '<a style="cursor: pointer" title="Editar" onclick="nuevaUnidad(' + data + ')"><i style="color:#EEA40F;" class="icon-pencil5"></i></a>';
+                                eliminar = '<a style="cursor: pointer" title="Eliminar" onclick="eliminarUnidad(' + data + ')"><i style="color:#EE2D0F;" class="icon-trash"></i></a>';
                                 return editar + ' ' + eliminar;
                             },
                             "targets": 7
@@ -185,13 +186,17 @@
 
     function nuevaUnidad(id) {
         var btnNuevo = '';
+        $('#txtUnidad').val('');
+        $('#txtPlaca').val('');
+        $('#txtModelo').val('');
+        $('#txtMarca').val('');
+        $('#txtUnidad').val('');
+        $('#txtSoatVence').val('');  
+        $('#cboSocio').val(-1);
+        $('#cboEstado').val(-1);
         $('#unidadModal').modal('show');
         if (id) {
             idUnidad = id;
-            // btnNuevo += '<div class="card-header"><div class="form-group">';
-            // btnNuevo += '<button onclick="agregarPenalidad()" type="button" class="btn bg-primary btn-labeled btn-labeled-left rounded-round"><b><i class="icon-plus2"></i></b>Nueva penalidad</button>';
-            // btnNuevo += '</div></div>';
-            // btnNuevo += '<div class="card-body" id="bodyPenalidades"></div>'
         }else{
             idUnidad = null;
         }
@@ -200,8 +205,13 @@
     }
 
     function obtenerConfiguracionesUnidad() {
+        var id = idUnidad;
         $.ajax({
-            type: 'GET',
+            data: {
+                id:id
+            },
+            dataType: 'json',
+            method: 'post',
             url: "{{ route('obtener_configuracion_unidad') }}",
             beforeSend: function() {
                 loaderWindow('unidadModal');
@@ -209,8 +219,22 @@
             success: function(data) {
                 var socios = data[0];
                 var estados = data[1];
-                cargarSelect('cboSocio', 'id', 'socio', socios);
-                cargarSelect('cboEstado', 'id', 'descripcion', estados);
+                var unidad = data[2];
+                select2.cargarSeleccione('cboSocio', socios,'id','socio', 'Seleccione socio');
+                select2.cargarSeleccione('cboEstado', estados,'id','descripcion', 'Seleccione descripcion');                
+                if(!isEmpty(unidad)){
+                    asignarValorSelect2('cboSocio',unidad[0]['socio_id']);
+                    asignarValorSelect2('cboEstado',unidad[0]['estado_id']);
+                    $('#txtUnidad').val(unidad[0]['nombre']);
+                    $('#txtPlaca').val(unidad[0]['placa']);
+                    $('#txtModelo').val(unidad[0]['modelo']);
+                    $('#txtMarca').val(unidad[0]['marca']);
+                    $('#txtUnidad').val(unidad[0]['nombre']);
+                    $('#txtSoatVence').val(formatoFecha(unidad[0]['soat_vence']));                                        
+                }else{
+                    asignarValorSelect2('cboSocio',-1);
+                    asignarValorSelect2('cboEstado',-1);
+                }
                 loaderWindowClose('unidadModal');
             }
         });
@@ -225,7 +249,9 @@
         var marca = $('#txtMarca').val();
         var soatVence = $('#txtSoatVence').val();
         var estado = $('#cboEstado').val();
-        $.ajax({
+        var validar = validarCamposUnidad(nombre,socio,estado);
+        if(validar == true){
+            $.ajax({
             data: {
                 id:id,
                 nombre: nombre,
@@ -235,27 +261,89 @@
                 marca:marca,
                 soatVence:soatVence,
                 estado:estado
-            },
-            dataType: 'json',
-            method: 'post',
-            url: "{{ route('guardar_unidad') }}",
-            beforeSend: function() {
-                loaderWindow('windowTicket');
-            },
-            success: function(data) {  
-                afterSendUnidad(data);                  
-            }
-        });
+                },
+                dataType: 'json',
+                method: 'post',
+                url: "{{ route('guardar_unidad') }}",
+                beforeSend: function() {
+                    loaderWindow('windowUnidad');
+                },
+                success: function(data) {  
+            
+                }
+            }).then((response)=>{
+                afterSendUnidad(response)
+            }).then($('#unidadModal').modal('hide'));
+        }
     }
     function afterSendUnidad(data){
-        if(data[0]['vout_exito']==1){
-            console.log('Se ha actualizado la unidad ',data[0]['unidad'])  
+        if(data[0]['vout_exito']==1){            
+            mostrarOk('success','Unidad actualizada');
         }else{
-            console.log('Se ha insertado la unidad ',data[0]['unidad'])  
+            mostrarOk('success','Unidad registrada');
         }                   
-        loaderWindowClose('windowTicket');
-        $('#unidadModal').modal('hide');
-        obtenerUnidad();
+        obtenerUnidad(1);            
+    }
+    function eliminarUnidad(id){
+        swal({
+                title: '¿Está seguro de eliminar esta unidad?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Si, Eliminar',
+                cancelButtonText: 'No, cancelar',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false
+            }).then(function (result) {
+                if(result.value == true && result.dimiss != 'overlay' && result.dimiss != 'cancel'){
+                    $.ajax({
+                        data : {id : id},
+                        dataType: 'json',
+                        method: 'post',
+                        url: "{{ route('eliminar_unidad') }}",
+                        beforeSend: function() {
+                            loaderWindow('windowUnidad');
+                        },
+                        success: function(data) {  
+                            
+                        }
+                    }).then((response)=>{
+                        loaderWindowClose('windowUnidad');
+                        swal(
+                            'Eliminado',
+                            'La unidad fue eliminada',
+                            'success'
+                        );
+                    }).then((response)=>{
+                        obtenerUnidad();
+                        mostrarOk('warning','Unidad eliminada');
+                    })
+                }
+                if(result.dismiss === 'cancel' || result.dismiss === 'overlay'){
+                    swal(
+                        'Cancelado',
+                        'Se canceló la eliminación',
+                        'error'
+                    );
+
+                }
+            });
+    }
+    function validarCamposUnidad(nombre,socio,estado){
+        var validar = true;
+        if(isEmpty(nombre)){
+            mostrarOk('warning','Ingrese un nombre válido');
+            validar = false;
+        }
+        if(isEmpty(socio) || socio == -1){
+            mostrarOk('warning','Ingrese un socio válido');
+            validar = false;
+        }
+        if(isEmpty(estado) || estado == -1){
+            mostrarOk('warning','Ingrese un estado válido');
+            validar = false;
+        }
+        return validar;
     }
 </script>
 

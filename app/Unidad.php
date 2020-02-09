@@ -27,7 +27,17 @@ class Unidad extends Model
 
     public static function guardarUnidad($id,$nombre,$socio,$placa,$modelo,$marca,$soatVence,$estado){
         // $respuesta = DB::select('call sp_ticket_guardar(?,?,?,?,?,?,?,?)',[$id],[$nombre],[$socio],[$placa],[$modelo],[$marca],[$soatVence],[$estado]);
-        $respuesta = DB::select('call sp_ticket_guardar(?,?,?,?,?,?,?,?)',[$id,$nombre,$socio,$placa,$modelo,$marca,$soatVence,$estado]);
+        $respuesta = DB::select('call sp_unidad_guardar(?,?,?,?,?,?,?,?)',[$id,$nombre,$socio,$placa,$modelo,$marca,$soatVence,$estado]);
+        return $respuesta;
+    }
+
+    public static function obtenerUnidadXId($id){
+        $respuesta = DB::select('call sp_unidad_obtenerXId(?)',[$id]);
+        return $respuesta;
+    }
+
+    public static function eliminarUnidad($id){
+        $respuesta = DB::select('call sp_unidad_eliminar(?)',[$id]);
         return $respuesta;
     }
     

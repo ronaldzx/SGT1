@@ -42,15 +42,23 @@
     <script src="../resources/js/global_assets/js/plugins/forms/selects/select2.min.js"></script>
     <script src="../resources/js/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
     <script src="../resources/js/global_assets/js/plugins/loaders/progressbar.min.js"></script>
-
+    <script src="../resources/js/global_assets/js/plugins/notifications/sweet_alert.min.js"></script>
+    <script src="../resources/js/global_assets/js/plugins/forms/styling/switchery.min.js"></script> 
+    <script src="../resources/js/global_assets/js/plugins/notifications/jgrowl.min.js"></script>
+	<script src="../resources/js/global_assets/js/plugins/notifications/noty.min.js"></script>
+    
     <script src="../resources/js/assets/js/app.js"></script>
     <script src="../resources/js/global_assets/js/demo_pages/components_progress.js"></script>
     <script src="../resources/js/global_assets/js/demo_pages/form_inputs.js"></script>
     <script src="../resources/js/global_assets/js/demo_pages/picker_date.js?v=<?php echo time();?>"></script>
     <script src="../resources/js/global_assets/js/demo_pages/form_select2.js"></script>
-    <script src="../resources/js/global_assets/js/demo_pages/datatables_basic.js"></script> 
+    <script src="../resources/js/global_assets/js/demo_pages/datatables_basic.js?v=<?php echo time();?>"></script>
     <script src="../resources/js/global_assets/js/demo_pages/datatables_data_sources.js"></script>   
+    <script src="../resources/js/global_assets/js/demo_pages/extra_sweetalert.js"></script>
+    <script src="../resources/js/global_assets/js/demo_pages/extra_jgrowl_noty.js"></script>
     <script src="../resources/js/global_assets/js/main/utils.js?v=<?php echo time();?>"></script>
+
+
     <!-- /theme JS files -->
 </head>
 

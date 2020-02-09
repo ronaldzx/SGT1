@@ -1,22 +1,45 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
 });
+function obtenerFechaActual() {
+    var today = new Date(); var dd = today.getDate(); var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    if (dd < 10) { dd = '0' + dd; } if (mm < 10) { mm = '0' + mm; } var today = dd + '/' + mm + '/' + yyyy;
+    return today;
+}
+function mostrarOk(tipo, mensaje) {
+    new Noty({
+        theme: ' alert alert-' + tipo + ' alert-styled-left p-0',
+        text: mensaje,
+        type: tipo,
+        progressBar: false,
+        closeWith: ['button']
+    }).show();
+}
 
-function cargarSelect(cboId,itemId,ItemDes,data){
+function formatoFecha(data) {
+    var fecha = data.split(' ');
+    var info = datex.formatoImaginaDG(fecha[0]);
+    return info;
+}
+
+function cargarSelect(cboId, itemId, ItemDes, data) {
     document.getElementById(cboId).innerHTML = '';
-    if(!isEmpty(data)){
+    if (!isEmpty(data)) {
         // $('#'+cboId).append('<option value ="">Todos</option>');
-        $.each(data,function(index,item){
-            $('#'+cboId).append('<option value ="'+item[itemId] + '">' + item[ItemDes]+'</option>');
+        $.each(data, function (index, item) {
+            $('#' + cboId).append('<option value ="' + item[itemId] + '">' + item[ItemDes] + '</option>');
         });
     }
 }
-function isEmpty(value)
-{
+function asignarValorSelect2(id, valor) {
+    $('#' + id).val(valor).trigger('change.select2');
+}
+function isEmpty(value) {
     if ($.type(value) === 'undefined')
         return true;
     if ($.type(value) === 'null')
@@ -55,8 +78,8 @@ function loaderWindow(window) {
         }
     })
 };
-function loaderWindowClose(window){
-    $('#'+window).unblock();
+function loaderWindowClose(window) {
+    $('#' + window).unblock();
 }
 $('.btnLoader').on('click', function (window) {
     var light_4 = $('#' + window);

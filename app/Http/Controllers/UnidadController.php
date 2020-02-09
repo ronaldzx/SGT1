@@ -16,10 +16,12 @@ class UnidadController extends Controller
         $unidad = App\Unidad::UnidadActivo();
         return $unidad;
     }
-    public function obtenerConfiguracionesUnidad(){
+    public function obtenerConfiguracionesUnidad(Request $data){
+        $id = $data['id'];
         $socios = App\Socio::obtenerSociosActivos();
         $estados = App\Unidad::obtenerEstadoUnidad();
-        return array($socios,$estados);
+        $unidad = App\Unidad::obtenerUnidadXId($id);
+        return array($socios,$estados,$unidad);
     }
 
     public function guardar_unidad(Request $data){
@@ -32,6 +34,13 @@ class UnidadController extends Controller
         $soatVence = Carbon::createFromFormat('d/m/Y', $data['soatVence']);
         $estado = $data['estado'];
         $respuesta = App\Unidad::guardarUnidad($id,$nombre,$socio,$placa,$modelo,$marca,$soatVence,$estado);
+        return $respuesta;
+    }
+
+    public function eliminar_unidad(Request $data){
+        $id = $data['id'];
+
+        $respuesta = App\Unidad::eliminarUnidad($id);
         return $respuesta;
     }
 }
